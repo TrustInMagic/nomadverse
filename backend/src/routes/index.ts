@@ -4,7 +4,7 @@ import {
   get_all_chronicles,
   chronicle_create,
 } from '../controllers/chronicleController';
-import { get_all_users, create_user } from '../controllers/userController';
+import { get_all_users } from '../controllers/userController';
 // -------------------------------------------------- //
 
 const router = express.Router();
@@ -13,12 +13,9 @@ const router = express.Router();
 router.get('/', get_all_chronicles);
 
 // create new chronicle
-router.post('/chronicle/create', chronicle_create);
+router.post('/create', chronicle_create);
 
 // get all users
 router.get('/users', get_all_users);
-
-// create new user
-router.post('/user/create', create_user);
 
 export default router;

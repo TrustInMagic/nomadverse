@@ -6,8 +6,17 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 // routes
 import indexRouter from './routes/index';
+import authRouter from './routes/auth';
 // db
 import mongoose from 'mongoose';
+// bcrypt
+import bcrypt from 'bcryptjs';
+// models
+import User from './models/user';
+// passport
+import passport from 'passport';
+import passportLocal from 'passport-local';
+import session from 'express-session';
 // typescript
 import { Request, Response } from 'express';
 // -------------------------------------------------- //
@@ -29,8 +38,56 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// passport config
+const localStrategy = passportLocal.Strategy;
+
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+passport.deserializeUser(async function (id, done) {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
+passport.use(
+  new localStrategy(
+    {
+      usernameField: 'email',
+      passwordField: 'password',
+    },
+    async (username, password, done) => {
+      try {
+        const user = await User.findOne({ email: username });
+        const match = await bcrypt.compare(password, user?.password || '');
+
+        if (!user || !match) {
+          return done(null, false, {
+            message: 'Incorrect username or password',
+          });
+        }
+        return done(null, user);
+      } catch (err) {
+        return done(err);
+      }
+    }
+  )
+);
+app.use(passport.initialize());
+app.use(
+  session({
+    secret: process.env.SECRET_PASSPORT,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use(passport.session());
+
 // routes
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

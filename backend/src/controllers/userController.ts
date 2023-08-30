@@ -1,10 +1,15 @@
-//
 import asyncHandler from 'express-async-handler';
 import createHttpError from 'http-errors';
 //collections
 import User from '../models/user';
 // validators
 import { body, validationResult } from 'express-validator';
+// bcrypt
+import bcrypt from 'bcryptjs';
+// passport
+import passport from 'passport';
+// typescript
+import { Request, Response } from 'express';
 // -------------------------------------------------- //
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -60,28 +65,59 @@ export const create_user = [
     .escape(),
 
   asyncHandler(async (req, res, next) => {
-    const errors = validationResult(req);
+    try {
+      const errors = validationResult(req);
 
-    const user = new User({
-      email: req.body.email,
-      username: req.body.username,
-      password: req.body.password,
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      role: req.body.role || 'user',
-    });
+      bcrypt.hash(
+        req.body.password,
+        10,
+        async (err: Error, hashedPassword: string) => {
+          if (err) {
+            next(err);
+          } else {
+            const user = new User({
+              email: req.body.email,
+              username: req.body.username,
+              password: hashedPassword,
+              first_name: req.body.first_name,
+              last_name: req.body.last_name,
+              role: req.body.role || 'user',
+            });
 
-    if (!errors.isEmpty()) {
-      const customError = createHttpError(400, 'Invalid Request', {
-        headers: {
-          Errors: errors.array(),
-        },
-      });
-      res.send(customError);
-      return;
-    } else {
-      await user.save();
-      res.sendStatus(200);
+            if (!errors.isEmpty()) {
+              const customError = createHttpError(400, 'Invalid Request', {
+                headers: {
+                  Errors: errors.array(),
+                },
+              });
+              res.send(customError);
+              return;
+            } else {
+              await user.save();
+              res.sendStatus(200);
+            }
+          }
+        }
+      );
+    } catch (err) {
+      return next(err);
     }
   }),
 ];
+
+export const login_user = [
+  passport.authenticate('local'),
+  (req: Request, res: Response) => {
+    const { username } = req.user;
+    res.json({ username: username });
+  },
+];
+
+export const logout_user = asyncHandler(async (req, res, next) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/');
+  });
+});

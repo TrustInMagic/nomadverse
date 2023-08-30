@@ -1,6 +1,6 @@
 import express from 'express';
 // controllers
-import { chronicle_create } from '../controllers/chronicleController';
+import { chronicle_create } from '../controllers/chronicle-controller';
 // -------------------------------------------------- //
 
 const router = express.Router();

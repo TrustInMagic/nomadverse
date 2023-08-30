@@ -1,7 +1,16 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
 // -------------------------------------------------- //
 
-const Schema = mongoose.Schema;
+export interface ChronicleInterface extends Document {
+  title: string;
+  date: Date;
+  image_url: string;
+  author: mongoose.Types.ObjectId;
+  description: string;
+  category: mongoose.Types.ObjectId;
+  sub_chronicles?: mongoose.Types.ObjectId;
+  url: string;
+}
 
 const chronicleSchema = new Schema({
   title: { type: String, required: true, maxLength: 20 },
@@ -17,4 +26,4 @@ chronicleSchema.virtual('url').get(function () {
   return `/chronicle/${this._id}`;
 });
 
-export default mongoose.model('Chronicle', chronicleSchema);
+export default mongoose.model<ChronicleInterface>('Chronicle', chronicleSchema);

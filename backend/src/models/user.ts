@@ -1,7 +1,15 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
 // -------------------------------------------------- //
 
-const Schema = mongoose.Schema;
+export interface UserInterface extends Document {
+  email: string;
+  username: string;
+  password: string;
+  firs_name: string;
+  last_name: string;
+  role: string;
+  url: string;
+}
 
 const userSchema = new Schema({
   email: {
@@ -40,4 +48,4 @@ userSchema.virtual('url').get(function () {
   return `/user/${this._id}`;
 });
 
-export default mongoose.model('User', userSchema);
+export default mongoose.model<UserInterface>('User', userSchema);

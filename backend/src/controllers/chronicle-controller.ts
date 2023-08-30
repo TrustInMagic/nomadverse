@@ -4,13 +4,17 @@ import Chronicle from '../models/chronicle';
 import User from '../models/user';
 // validators
 import { body, validationResult } from 'express-validator';
+// types
+import { ExtendedRequest } from '../../types/express';
 // -------------------------------------------------- //
 
-export const get_all_chronicles = asyncHandler(async (req, res, next) => {
-  const allChronicles = await Chronicle.find().exec();
-
-  res.json(allChronicles);
-});
+export const get_all_chronicles = asyncHandler(
+  async (req: ExtendedRequest, res, next) => {
+    const allChronicles = await Chronicle.find().exec();
+    req.allChronicles = allChronicles;
+    next();
+  }
+);
 
 export const chronicle_create = [
   body('title', 'Chronicle title must be specified.')

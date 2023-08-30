@@ -7,8 +7,8 @@ import { body, validationResult } from 'express-validator';
 
 export const get_all_categories = asyncHandler(async (req, res, next) => {
   const allCategories = await Category.find().exec();
-
-  res.json(allCategories);
+  req.allCategories = allCategories;
+  next();
 });
 
 export const category_create = [

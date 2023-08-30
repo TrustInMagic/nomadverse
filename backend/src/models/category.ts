@@ -1,10 +1,12 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 // -------------------------------------------------- //
 
-const Schema = mongoose.Schema;
+export interface CategoryInterface extends Document {
+  name: string;
+}
 
 const categorySchema = new Schema({
   name: { type: String, required: true, unique: true },
 });
 
-export default mongoose.model('Category', categorySchema);
+export default mongoose.model<CategoryInterface>('Category', categorySchema);

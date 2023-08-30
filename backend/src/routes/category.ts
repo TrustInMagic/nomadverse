@@ -1,6 +1,6 @@
 import express from 'express';
 // controllers
-import { category_create } from '../controllers/categoryController';
+import { category_create } from '../controllers/category-controller';
 // -------------------------------------------------- //
 
 const router = express.Router();

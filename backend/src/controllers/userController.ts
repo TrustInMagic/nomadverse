@@ -75,15 +75,6 @@ export const create_user = [
           if (err) {
             next(err);
           } else {
-            const user = new User({
-              email: req.body.email,
-              username: req.body.username,
-              password: hashedPassword,
-              first_name: req.body.first_name,
-              last_name: req.body.last_name,
-              role: req.body.role || 'user',
-            });
-
             if (!errors.isEmpty()) {
               const customError = createHttpError(400, 'Invalid Request', {
                 headers: {
@@ -93,6 +84,15 @@ export const create_user = [
               res.send(customError);
               return;
             } else {
+              const user = new User({
+                email: req.body.email,
+                username: req.body.username,
+                password: hashedPassword,
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                role: req.body.role || 'user',
+              });
+
               await user.save();
               res.sendStatus(200);
             }

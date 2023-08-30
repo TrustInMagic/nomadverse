@@ -1,5 +1,4 @@
 import asyncHandler from 'express-async-handler';
-import createHttpError from 'http-errors';
 //collections
 import User from '../models/user';
 // validators
@@ -76,12 +75,7 @@ export const create_user = [
             next(err);
           } else {
             if (!errors.isEmpty()) {
-              const customError = createHttpError(400, 'Invalid Request', {
-                headers: {
-                  Errors: errors.array(),
-                },
-              });
-              res.send(customError);
+              res.status(400).json(errors.array());
               return;
             } else {
               const user = new User({

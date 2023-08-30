@@ -7,6 +7,8 @@ import logger from 'morgan';
 // routes
 import indexRouter from './routes/index';
 import authRouter from './routes/auth';
+import chronicleRouter from './routes/chronicle';
+import categoryRouter from './routes/category';
 // db
 import mongoose from 'mongoose';
 // bcrypt
@@ -88,6 +90,8 @@ app.use(passport.session());
 // routes
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/chronicle', chronicleRouter);
+app.use('/category', categoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

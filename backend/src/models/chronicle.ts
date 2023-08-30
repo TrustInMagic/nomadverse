@@ -9,11 +9,7 @@ const chronicleSchema = new Schema({
   image_url: { type: String, required: true },
   author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   description: { type: String, minLength: 10, required: true },
-  category: {
-    type: String,
-    enum: ['travel', 'personal development', 'business'],
-    required: true,
-  },
+  category: { type: Schema.Types.ObjectId, ref: 'Category', required: true },
   sub_chronicles: { type: Schema.Types.ObjectId, ref: 'SubChronicle' },
 });
 

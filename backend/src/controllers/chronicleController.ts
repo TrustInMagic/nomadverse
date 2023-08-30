@@ -1,5 +1,4 @@
 import asyncHandler from 'express-async-handler';
-import createHttpError from 'http-errors';
 // collections
 import Chronicle from '../models/chronicle';
 import User from '../models/user';
@@ -37,15 +36,9 @@ export const chronicle_create = [
       }
 
       if (!errors.isEmpty()) {
-        const customError = createHttpError(400, 'Invalid Request', {
-          headers: {
-            Errors: errors.array(),
-          },
-        });
-        res.send(customError);
+        res.status(400).json(errors.array());
         return;
       } else {
-        console.log('USER IS', req.user.username);
         const author = await User.findOne({ username: req.user.username });
 
         const chronicle = new Chronicle({

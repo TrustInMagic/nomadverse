@@ -1,14 +1,30 @@
-'use client'
+'use client';
 
 import * as React from 'react';
 //components
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+// http
+import httpClient from '@/api/http-client';
+// types
+import { CategoryInterface } from '../../../../types/models';
 // -------------------------------------------------- //
 
 export default function CategoryDropdown() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [categories, setCategories] = React.useState<[] | CategoryInterface[]>(
+    []
+  );
+
+  React.useEffect(() => {
+    (async () => {
+      const allData = await httpClient.get('');
+      const { categories } = allData;
+      setCategories(categories);
+    })();
+  }, []);
+
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -25,6 +41,7 @@ export default function CategoryDropdown() {
         aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        color='secondary'
       >
         Read ▼
       </Button>
@@ -37,9 +54,11 @@ export default function CategoryDropdown() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        {categories.map((category) => (
+          <MenuItem onClick={handleClose} key={category.name}>
+            {category.name}
+          </MenuItem>
+        ))}
       </Menu>
     </div>
   );

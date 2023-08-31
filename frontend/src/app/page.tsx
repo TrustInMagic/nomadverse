@@ -1,12 +1,12 @@
 import React from 'react';
 // components
-import Header from '@/components/Header';
+import Content from '@/components/Content';
 // -------------------------------------------------- //
 
 export default function Home() {
   return (
-    <div className='p-3'>
-      <Header />
+    <div className='my-8'>
+      <Content />
     </div>
   );
 }

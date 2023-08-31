@@ -19,19 +19,25 @@ const urlDecoder = (url: string) => {
 };
 
 export default function ChronicleCard({ chronicle, idx }: ChronicleProps) {
-  console.log(chronicle);
+  const middlePosition = idx === 2;
   return (
-    <div className='relative cursor-pointer h-100'>
+    <div
+      className={`relative cursor-pointer h-100 ${
+        middlePosition ? 'row-start-1 row-end-3 col-start-2' : ''
+      }`}
+      style={middlePosition ? { height: '850px' } : {}}
+    >
       <div className='relative'>
         {/* eslint-disable-next-line */}
         <img
-          className='w-full max-h-80 object-cover'
+          className='w-full h-80 object-cover'
           alt='Chronicle Image'
           src={
             imageUrlRegex.test(chronicle.image_url)
               ? urlDecoder(chronicle.image_url)
               : '/'
           }
+          style={middlePosition ? { height: '650px' } : {}}
         />
         <CategoryTag category={chronicle.category.name} />
       </div>

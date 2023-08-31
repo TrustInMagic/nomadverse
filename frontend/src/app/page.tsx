@@ -1,14 +1,12 @@
 import React from 'react';
 // components
 import Content from '@/components/Content';
-import Footer from '@/components/Footer';
 // -------------------------------------------------- //
 
 export default function Home() {
   return (
-    <div className='mt-8'>
+    <div className='mt-12'>
       <Content />
-      <Footer/>
     </div>
   );
 }

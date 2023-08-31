@@ -7,7 +7,8 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 // components
-import Header from '@/components/Nav/Header';
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer';
 // -------------------------------------------------- //
 
 const inter = Inter({ subsets: ['latin'] });
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className={`${inter.className} p-3`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

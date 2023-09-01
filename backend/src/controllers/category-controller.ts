@@ -3,13 +3,17 @@ import asyncHandler from 'express-async-handler';
 import Category from '../models/category';
 // validators
 import { body, validationResult } from 'express-validator';
+// typescript
+import { ExtendedRequest } from '../../types/express';
 // -------------------------------------------------- //
 
-export const get_all_categories = asyncHandler(async (req, res, next) => {
-  const allCategories = await Category.find().exec();
-  req.allCategories = allCategories;
-  next();
-});
+export const get_all_categories = asyncHandler(
+  async (req: ExtendedRequest, res, next) => {
+    const allCategories = await Category.find().exec();
+    req.allCategories = allCategories;
+    next();
+  }
+);
 
 export const category_create = [
   body('name', 'Name must be specified.').trim().escape().isLength({ min: 1 }),

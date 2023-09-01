@@ -1,19 +1,11 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { ChronicleInterface } from '../../../types/models';
 // -------------------------------------------------- //
 
-export interface ChronicleInterface extends Document {
-  title: string;
-  date: Date;
-  image_url: string;
-  author: mongoose.Types.ObjectId;
-  description: string;
-  category: mongoose.Types.ObjectId;
-  sub_chronicles?: mongoose.Types.ObjectId;
-  url: string;
-}
+interface ChronicleInterfaceExtended extends ChronicleInterface, Document {}
 
 const chronicleSchema = new Schema({
-  title: { type: String, required: true, maxLength: 20 },
+  title: { type: String, required: true, maxLength: 50 },
   date: { type: Date, required: true },
   image_url: { type: String, required: true },
   author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
@@ -26,4 +18,7 @@ chronicleSchema.virtual('url').get(function () {
   return `/chronicle/${this._id}`;
 });
 
-export default mongoose.model<ChronicleInterface>('Chronicle', chronicleSchema);
+export default mongoose.model<ChronicleInterfaceExtended>(
+  'Chronicle',
+  chronicleSchema
+);

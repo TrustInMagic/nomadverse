@@ -22,10 +22,10 @@ export default function ChronicleCard({ chronicle, idx }: ChronicleProps) {
   const middlePosition = idx === 2;
   return (
     <div
-      className={`relative cursor-pointer h-100 ${
+      className={`relative cursor-pointer h-10 ${
         middlePosition ? 'row-start-1 row-end-3 col-start-2' : ''
       }`}
-      style={middlePosition ? { height: '850px' } : {}}
+      style={middlePosition ? { height: '880px' } : {}}
     >
       <div className='relative'>
         {/* eslint-disable-next-line */}

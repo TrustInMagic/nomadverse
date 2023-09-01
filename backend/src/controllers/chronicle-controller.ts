@@ -2,6 +2,7 @@ import asyncHandler from 'express-async-handler';
 // collections
 import Chronicle from '../models/chronicle';
 import User from '../models/user';
+import Category from '../models/category';
 // validators
 import { body, validationResult } from 'express-validator';
 // types
@@ -10,7 +11,11 @@ import { ExtendedRequest } from '../../types/express';
 
 export const get_all_chronicles = asyncHandler(
   async (req: ExtendedRequest, res, next) => {
-    const allChronicles = await Chronicle.find().exec();
+    const allChronicles = await Chronicle.find()
+      .populate('category', 'name')
+      .populate('author', 'username')
+      .populate('sub_chronicles')
+      .exec();
     req.allChronicles = allChronicles;
     next();
   }
@@ -19,7 +24,7 @@ export const get_all_chronicles = asyncHandler(
 export const chronicle_create = [
   body('title', 'Chronicle title must be specified.')
     .trim()
-    .isLength({ max: 20, min: 1 })
+    .isLength({ max: 50, min: 1 })
     .escape(),
 
   body('image_url', 'Image URL must be specified.').trim().escape(),
@@ -44,6 +49,7 @@ export const chronicle_create = [
         return;
       } else {
         const author = await User.findOne({ username: req.user.username });
+        const category = await Category.findOne({ name: req.body.category });
 
         const chronicle = new Chronicle({
           title: req.body.title,
@@ -51,7 +57,7 @@ export const chronicle_create = [
           image_url: req.body.image_url,
           author: author,
           description: req.body.description,
-          category: req.body.category,
+          category: category,
         });
 
         await chronicle.save();
@@ -62,3 +68,13 @@ export const chronicle_create = [
     }
   }),
 ];
+
+export const chronicle_get = asyncHandler(async (req, res, next) => {
+  const chronicleId = req.body.chronicleId;
+  try {
+    const chronicle = await Chronicle.findById(chronicleId);
+    res.json(chronicle);
+  } catch (err) {
+    return next(err);
+  }
+});

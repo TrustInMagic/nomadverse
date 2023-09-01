@@ -1,12 +1,15 @@
 import mongoose, { Document, Schema } from 'mongoose';
+// types
+import { CategoryInterface } from '../../../types/models';
 // -------------------------------------------------- //
 
-export interface CategoryInterface extends Document {
-  name: string;
-}
+interface CategoryInterfaceExtended extends Document, CategoryInterface {}
 
 const categorySchema = new Schema({
   name: { type: String, required: true, unique: true },
 });
 
-export default mongoose.model<CategoryInterface>('Category', categorySchema);
+export default mongoose.model<CategoryInterfaceExtended>(
+  'Category',
+  categorySchema
+);

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 // next
 import Link from 'next/link';
@@ -5,10 +7,13 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <div className='mt-28 bg-black text-slate-100  h-32 pt-10 pb-5 -mb-3 flex justify-center min-w-full'>
+    <div
+      className='bg-black text-slate-100  h-32 flex justify-center mt-auto p-10'
+      style={{ width: 'calc(100% - 80px)' }}
+    >
       <div className='grid grid-cols-2 gap-24 max-w-screen-xl'>
         <div className='flex flex-col gap-5'>
-          <span className='text-2xl'>Explore Alternatives</span>
+          <span className='text-2xl'>Explore the world and yourself</span>
           <span className='text-sm'>
             At Nomadverse, we are driven by a boundless curiosity to traverse
             the world, immerse ourselves in the beauty of nature, achieve

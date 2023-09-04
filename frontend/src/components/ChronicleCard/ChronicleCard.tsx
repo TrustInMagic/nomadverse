@@ -1,9 +1,11 @@
 import React from 'react';
 // components
-import CategoryTag from './CategoryTag';
+import CategoryTag from '../CategoryTag';
 import ChronicleCardDetail from './ChronicleCardDetail';
 // next
 import { useRouter } from 'next/navigation';
+// utils
+import urlDecoder from '../../../utils/urlDecoder';
 //types
 import { ChronicleInterface } from '../../../../types/models';
 // -------------------------------------------------- //
@@ -14,11 +16,6 @@ interface ChronicleProps {
 }
 
 const imageUrlRegex = /\.(jpeg|jpg|gif|png)$/i;
-
-const urlDecoder = (url: string) => {
-  const decoded = url.replace(/&#x2F;/g, '/');
-  return decoded;
-};
 
 export default function ChronicleCard({ chronicle, idx }: ChronicleProps) {
   const middlePosition = idx === 2;
@@ -48,7 +45,7 @@ export default function ChronicleCard({ chronicle, idx }: ChronicleProps) {
           }
           style={middlePosition ? { height: '650px' } : {}}
         />
-        <CategoryTag category={chronicle.category.name} />
+        <CategoryTag category={chronicle.category.name} isOnCard />
       </div>
       <ChronicleCardDetail
         title={chronicle.title}

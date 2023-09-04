@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${inter.className} flex flex-col items-center`}>
-        <div className='max-w-screen-2xl flex-1 p-3 '>
+        <div className='max-w-screen-2xl w-full mb-48'>
           <Header />
           {children}
         </div>

@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 // next
 import Link from 'next/link';
@@ -13,7 +11,7 @@ export default function Footer() {
     >
       <div className='grid grid-cols-2 gap-24 max-w-screen-xl'>
         <div className='flex flex-col gap-5'>
-          <span className='text-2xl'>Explore the world and yourself</span>
+          <span className='text-xl'>Explore the world and yourself</span>
           <span className='text-sm'>
             At Nomadverse, we are driven by a boundless curiosity to traverse
             the world, immerse ourselves in the beauty of nature, achieve
@@ -22,7 +20,7 @@ export default function Footer() {
             explorers and enthusiasts – just like you!
           </span>
         </div>
-        <div className='grid grid-cols-2'>
+        <div className='grid grid-cols-2 text-sm'>
           <div className='flex flex-col gap-2'>
             <span className='mb-2'>ABOUT NOMADVERSE</span>
             <Link href='/' className='no-underline text-slate-100'>
@@ -37,8 +35,8 @@ export default function Footer() {
             <Link href='/' className='no-underline text-slate-100'>
               Advertise
             </Link>
-            {/* eslint-disable-next-line */}
             <Link href='/' className='no-underline text-slate-100'>
+              {/* eslint-disable-next-line */}
               Editor's Column
             </Link>
             <Link href='/' className='no-underline text-slate-100'>

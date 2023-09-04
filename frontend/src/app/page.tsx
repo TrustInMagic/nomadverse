@@ -1,12 +1,46 @@
+'use client';
+
 import React from 'react';
 // components
 import Content from '@/components/Content';
+import Author from '@/components/Author';
+import ChroniclePagination from '@/components/ChronicleOverview/ChroniclePagination';
+// http
+import httpClient from '@/api/http-client';
+// types
+import { ChronicleInterface } from '../../../types/models';
 // -------------------------------------------------- //
 
 export default function Home() {
+  const [chronicles, setChronicles] = React.useState<[] | ChronicleInterface[]>(
+    []
+  );
+
+  React.useEffect(() => {
+    (async () => {
+      const data = await httpClient.get('');
+      const { chronicles } = data;
+      setChronicles(chronicles);
+    })();
+  }, []);
+
   return (
     <div className='mt-14 p-3'>
-      <Content />
+      <div>
+        <Content chronicles={chronicles} />
+      </div>
+      <div
+        className='mt-14'
+        style={{
+          borderBottom: 'solid 1px #d6d3d1',
+          borderTop: 'solid 1px #d6d3d1',
+        }}
+      >
+        <Author />
+      </div>
+      <div className='mt-14 flex flex-col items-center'>
+        <ChroniclePagination chronicles={chronicles} />
+      </div>
     </div>
   );
 }

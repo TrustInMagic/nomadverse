@@ -11,7 +11,7 @@ export default function Footer() {
     >
       <div className='grid grid-cols-2 gap-24 max-w-screen-xl'>
         <div className='flex flex-col gap-5'>
-          <span className='text-xl'>Explore the world and yourself</span>
+          <span className='text-xl'>Explore the world, explore yourself</span>
           <span className='text-sm'>
             At Nomadverse, we are driven by a boundless curiosity to traverse
             the world, immerse ourselves in the beauty of nature, achieve

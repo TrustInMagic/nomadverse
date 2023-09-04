@@ -28,14 +28,14 @@ export default function ChroniclePagination({
 
   return (
     <div className='flex flex-col items-center w-[900px]'>
-      <div>
+      <div className='flex flex-col gap-7'>
         {chronicles
           .slice(firstChronicleIdx, firstChronicleIdx + 5)
           .map((chronicle) => (
             <ChronicleOverview key={chronicle.title} chronicle={chronicle} />
           ))}
       </div>
-      <div className='mt-10'>
+      <div className='mt-20'>
         <Pagination
           count={pageNumber}
           variant='outlined'

@@ -5,6 +5,7 @@ import React from 'react';
 import Content from '@/components/Content';
 import Author from '@/components/Author';
 import ChroniclePagination from '@/components/ChronicleOverview/ChroniclePagination';
+import Socials from '@/components/Socials';
 // http
 import httpClient from '@/api/http-client';
 // types
@@ -40,6 +41,9 @@ export default function Home() {
       </div>
       <div className='mt-14 flex flex-col items-center'>
         <ChroniclePagination chronicles={chronicles} />
+      </div>
+      <div className='mt-28 flex flex-col items-center'>
+        <Socials />
       </div>
     </div>
   );

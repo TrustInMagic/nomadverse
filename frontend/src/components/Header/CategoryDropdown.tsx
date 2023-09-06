@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
@@ -14,8 +13,14 @@ import ListItemText from '@mui/material/ListItemText';
 import httpClient from '@/api/http-client';
 // utils
 import capitalizeWord from '../../../utils/capitalizeWord';
+import shuffle from '../../../utils/shuffleArray';
+// components
+import ChronicleGlimpse from './ChronicleGlimpse';
 // types
-import { CategoryInterface } from '../../../../types/models';
+import {
+  CategoryInterface,
+  ChronicleInterface,
+} from '../../../../types/models';
 // -------------------------------------------------- //
 
 type Anchor = 'top';
@@ -28,18 +33,18 @@ export default function CategoryDropdown() {
   const [categories, setCategories] = React.useState<[] | CategoryInterface[]>(
     []
   );
+  const [chronicles, setChronicles] = React.useState<[] | ChronicleInterface[]>(
+    []
+  );
 
   React.useEffect(() => {
     (async () => {
       const allData = await httpClient.get('');
-      const { categories } = allData;
+      const { categories, chronicles } = allData;
       setCategories(categories);
+      setChronicles(chronicles);
     })();
   }, []);
-
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setSelectedCategory(event.target.textContent);
-  };
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -56,6 +61,10 @@ export default function CategoryDropdown() {
       setState({ ...state, [anchor]: open });
     };
 
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setSelectedCategory(event.target.textContent);
+  };
+
   const list = (anchor: Anchor) => (
     <Box
       sx={{ width: 'auto' }}
@@ -64,7 +73,7 @@ export default function CategoryDropdown() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <ListItem>
+        <ListItem sx={{ marginBottom: '-20px' }}>
           <ListItemText primary='Topics' sx={{ color: 'gray' }} />
         </ListItem>
       </List>
@@ -88,9 +97,10 @@ export default function CategoryDropdown() {
           </ListItem>
         ))}
       </List>
-      {/* <Divider /> */}
     </Box>
   );
+
+  const shuffledChronicles = shuffle(chronicles);
 
   return (
     <div>
@@ -107,7 +117,15 @@ export default function CategoryDropdown() {
           >
             <div className='flex items-center gap-12'>
               <div>{list(anchor)}</div>
-              <div>OMFG OMFG</div>
+              <div className='flex flex-col gap-4'>
+                {shuffledChronicles.slice(0, 2).map((chronicle) => (
+                  <ChronicleGlimpse
+                    key={chronicle.title}
+                    chronicle={chronicle}
+                    closeDrawer={setState}
+                  />
+                ))}
+              </div>
             </div>
           </SwipeableDrawer>
         </React.Fragment>

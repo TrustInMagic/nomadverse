@@ -21,3 +21,12 @@ html {
     -20px 20px 25px rgba(0, 0, 0, 0.15);
 }
 
+.custom-link {
+  width: 0px;
+  height: 1px;
+  transition: width 0.3s ease-in-out;
+}
+
+.relative-div:hover .custom-link {
+  width: 100%;
+}

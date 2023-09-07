@@ -3,18 +3,41 @@
 import React from 'react';
 // http
 import httpClient from '@/api/http-client';
+// components
+import ChronicleOverview from '@/components/ChronicleOverview/ChronicleOverview';
+import CategoryFooter from '../components/CategoryFooter';
+// types
+import { ChronicleInterface } from '../../../../../types/models';
 // -------------------------------------------------- //
 
-export default function Category({ params }) {
-  const { name } = params;
-  const [chroniclesInCategory, setChroniclesInCategory] = React.useState(null);
+export default function Category({
+  params,
+}: {
+  [k: string]: { category: string };
+}) {
+  const { category } = params;
+  const [chroniclesInCategory, setChroniclesInCategory] = React.useState<
+    null | ChronicleInterface[]
+  >(null);
 
   React.useEffect(() => {
     (async () => {
-      const data = await httpClient.get(`category/${name}`);
+      const data = await httpClient.get(`category/${category}`);
       setChroniclesInCategory(data);
     })();
-  }, [name]);
+  }, [category]);
 
-  return <div>Category</div>;
+  return (
+    <div className='mt-20 font-bold text-xl p-4 flex flex-col'>
+      <span className='capitalize'>Category: {category}</span>
+      {chroniclesInCategory && (
+        <div className='mt-10 flex flex-col gap-10'>
+          {chroniclesInCategory.map((chronicle: ChronicleInterface) => (
+            <ChronicleOverview key={chronicle.title} chronicle={chronicle} />
+          ))}
+        </div>
+      )}
+      <CategoryFooter />
+    </div>
+  );
 }

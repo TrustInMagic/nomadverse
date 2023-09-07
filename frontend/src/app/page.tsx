@@ -20,7 +20,7 @@ export default function Home() {
   React.useEffect(() => {
     (async () => {
       const data = await httpClient.get('');
-      const { chronicles } = data;
+      const { chronicles, categories } = data;
       setChronicles(chronicles);
     })();
   }, []);

@@ -24,7 +24,7 @@ export default function CategoryTag({
       onClick={(e) => handleClick(e)}
       className={`${
         isOnCard ? 'absolute -bottom-2 left-1/2 transform -translate-x-1/2' : ''
-      } bg-white rounded shadow-xl  px-2 py-0.5 custom-shadow w-fit-content hover:scale-105`}
+      } bg-white rounded shadow-xl  px-2 py-0.5 custom-shadow w-fit-content hover:scale-105 cursor-pointer`}
     >
       {displayText?.toUpperCase()}
     </div>

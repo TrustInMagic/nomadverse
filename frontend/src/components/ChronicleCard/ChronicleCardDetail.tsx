@@ -30,7 +30,7 @@ export default function ChronicleCardDetail({
       <div className={`mb-2 text-xl ${center ? 'text-center' : ''} font-bold`}>
         {title}
       </div>
-      <div className={`text-xs ${center ? 'text-center' : ''}`}>
+      <div className={`font-normal text-xs ${center ? 'text-center' : ''}`}>
         {trimmedDescription}
       </div>
     </div>

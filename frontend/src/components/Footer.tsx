@@ -6,7 +6,7 @@ import Link from 'next/link';
 export default function Footer() {
   return (
     <div
-      className='bg-black text-slate-100  h-32 flex justify-center mt-auto p-10'
+      className='bg-black text-slate-100  h-32 flex justify-center p-10'
       style={{ width: 'calc(100% - 80px)' }}
     >
       <div className='grid grid-cols-2 gap-24 max-w-screen-xl'>

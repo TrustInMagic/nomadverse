@@ -18,11 +18,8 @@ import { useRouter } from 'next/navigation';
 export default function MiniNav() {
   const router = useRouter();
   const { user, setUser } = useAuthContext();
-  const parsedUser = user
-    ? typeof user === 'string'
-      ? JSON.parse(user)
-      : ''
-    : user;
+
+  console.log(user);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -50,6 +47,10 @@ export default function MiniNav() {
     localStorage.removeItem('user');
   };
 
+  const handleProfile = () => {
+    router.push('/dashboard');
+  };
+
   return (
     <Stack direction='row' spacing={2} alignItems='center'>
       {!user ? (
@@ -71,7 +72,7 @@ export default function MiniNav() {
             onClick={handleClick}
             color='secondary'
           >
-            {parsedUser.username}
+            {user.username}
           </Button>
           <Menu
             id='basic-menu'
@@ -82,17 +83,21 @@ export default function MiniNav() {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
             <MenuItem
-              onClick={handleClose}
-              disabled={parsedUser.role !== 'admin'}
+              onClick={() => {
+                handleProfile();
+                handleClose();
+              }}
             >
+              Profile
+            </MenuItem>
+            <MenuItem onClick={handleClose} disabled={user.role !== 'admin'}>
               New Chronicle
             </MenuItem>
             <MenuItem
               onClick={() => {
-                handleClose();
                 handleLogout();
+                handleClose();
               }}
             >
               Logout

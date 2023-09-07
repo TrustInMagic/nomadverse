@@ -28,8 +28,6 @@ export default function ChroniclePage({
     })();
   }, [chronicleId]);
 
-  console.log(chronicle);
-
   const decodedImgURL = chronicle ? urlDecoder(chronicle?.image_url) : '/';
 
   return (

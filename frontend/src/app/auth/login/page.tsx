@@ -62,7 +62,7 @@ export default function Login() {
       );
       if (response.username) {
         localStorage.setItem('user', JSON.stringify(response));
-        setUser(JSON.stringify(response));
+        setUser(response)
         router.push('/');
       }
     } catch (err: any) {

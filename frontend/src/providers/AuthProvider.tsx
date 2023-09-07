@@ -1,14 +1,13 @@
+'use client';
+
 import React, { ReactNode, Dispatch, SetStateAction } from 'react';
+// types
+import { UserInterface } from '../../../types/models';
 // -------------------------------------------------- //
 
-interface User {
-  username: string;
-  role: string;
-}
-
 interface AuthContextType {
-  user: User | null | string;
-  setUser: Dispatch<SetStateAction<User | null | string>>;
+  user: UserInterface | null;
+  setUser: Dispatch<SetStateAction<UserInterface | null>>;
 }
 
 interface AuthProviderProps {
@@ -26,7 +25,7 @@ const useAuthContext = () => {
 };
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = React.useState<User | null | string>(() => {
+  const [user, setUser] = React.useState<UserInterface | null>(() => {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
   });

@@ -16,6 +16,9 @@ import capitalizeWord from '../../../utils/capitalizeWord';
 import shuffle from '../../../utils/shuffleArray';
 // components
 import ChronicleGlimpse from './ChronicleGlimpse';
+// next
+import { useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 // types
 import {
   CategoryInterface,
@@ -37,6 +40,9 @@ export default function CategoryDropdown() {
     []
   );
 
+  const router = useRouter();
+  const params = useParams();
+
   React.useEffect(() => {
     (async () => {
       const allData = await httpClient.get('');
@@ -45,6 +51,15 @@ export default function CategoryDropdown() {
       setChronicles(chronicles);
     })();
   }, []);
+
+  React.useEffect(() => {
+    const { category } = params;
+    if (category) {
+      setSelectedCategory(category as string);
+    } else {
+      setSelectedCategory(null);
+    }
+  }, [params]);
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -62,7 +77,13 @@ export default function CategoryDropdown() {
     };
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setSelectedCategory(event.target.textContent);
+    const target = event.target as HTMLElement;
+    const textContent = target.textContent;
+
+    if (textContent) {
+      setSelectedCategory(textContent);
+      router.push(`/category/${textContent.toLowerCase()}`);
+    }
   };
 
   const list = (anchor: Anchor) => (
@@ -78,12 +99,12 @@ export default function CategoryDropdown() {
         </ListItem>
       </List>
       <List>
-        {categories.map((category, index) => (
+        {categories.map((category) => (
           <ListItem
             key={category.name}
             disablePadding
             className={`${
-              selectedCategory === capitalizeWord(category.name)
+              selectedCategory === category.name
                 ? 'text-purple-600 underline decoration-2'
                 : ''
             }`}

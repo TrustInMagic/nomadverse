@@ -3,55 +3,113 @@
 import React from 'react';
 // components
 import CustomStepper from './components/CustomStepper';
-import PagePreview from './components/PagePreview';
+import PagePreview from './components/ChroniclePreview';
 import Separator from './components/Separator';
+import ChronicleForm from './components/ChronicleForm';
 // -------------------------------------------------- //
 
+const MIN_LEFT_WIDTH = 300;
+const MIN_RIGHT_WIDTH = 300;
+
 export default function Create() {
-  const [dividerPosition, setDividerPosition] = React.useState(500);
-  const dividerRef = React.useRef(null);
-  const stepperRef = React.useRef(null);
-  const previewRef = React.useRef(null);
+  // resizing
+  const [leftWidth, setLeftWidth] = React.useState<null | number>(null);
+  const [rightWidth, setRightWidth] = React.useState<null | number>(null);
+  const [separatorXPosition, setSeparatorXPosition] = React.useState<
+    null | number
+  >(null);
+  const [dragging, setDragging] = React.useState<boolean>(false);
+  // stepper
+  const [step, setStep] = React.useState(0);
+  // chronicle forms
 
-  const onMouseDown = (e) => {
-    const initialPos = e.clientX;
+  // refs
+  const dividerRef = React.useRef<HTMLDivElement>(null);
+  const leftRef = React.useRef<HTMLDivElement>(null);
+  const rightRef = React.useRef<HTMLDivElement>(null);
 
-    const onMouseMove = (moveE) => {
-      const delta = moveE.clientX - initialPos;
-      setDividerPosition((prev) => prev + delta);
-    };
+  const onMouseDown = (e: React.MouseEvent): void => {
+    setSeparatorXPosition(e.clientX);
+    setDragging(true);
+  };
 
-    const onMouseUp = () => {
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
-    };
+  const onMouseMove = (e: React.MouseEvent): void => {
+    if (dragging && leftWidth && rightWidth && separatorXPosition) {
+      const newLeftWidth = leftWidth + e.clientX - separatorXPosition;
+      const newRightWidth = rightWidth - e.clientX + separatorXPosition;
+      setRightWidth(newRightWidth);
+      setLeftWidth(newLeftWidth);
 
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
+      if (newLeftWidth <= MIN_LEFT_WIDTH) {
+        setLeftWidth(MIN_LEFT_WIDTH);
+      }
+
+      if (newRightWidth <= MIN_RIGHT_WIDTH) {
+        setRightWidth(MIN_RIGHT_WIDTH);
+      }
+
+      setSeparatorXPosition(e.clientX);
+    }
+  };
+
+  const onMouseUp = (): void => {
+    setDragging(false);
+  };
+
+  const navigateToStep = (step: number): void => {
+    setStep(step);
   };
 
   React.useEffect(() => {
-    if (dividerRef.current && stepperRef.current && previewRef.current) {
-      stepperRef.current.style.width = `${dividerPosition}px`;
-      previewRef.current.style.width = `calc(100% - ${dividerPosition}px)`;
+    if (dividerRef.current && leftRef.current && rightRef.current) {
+      if (!leftWidth) {
+        setLeftWidth(leftRef.current?.clientWidth);
+        return;
+      }
+      leftRef.current.style.width = `${leftWidth}px`;
+
+      if (!rightWidth) {
+        setRightWidth(rightRef.current?.clientWidth);
+        return;
+      }
+      rightRef.current.style.width = `${rightWidth}px`;
     }
-  }, [dividerPosition]);
+  }, [leftWidth, rightWidth]);
+
+  React.useEffect(() => {
+    document.addEventListener('mousemove', onMouseMove);
+
+    return () => {
+      document.removeEventListener('mousemove', onMouseMove);
+    };
+  });
+
+  React.useEffect(() => {
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+
+    return () => {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
+  });
 
   return (
     <div className='mt-24 flex flex-col gap-2 w-full items-center h-full flex-1'>
       <span className='font-bold text-xl'>Welcome to the Writer Suite!</span>
       <span className='text-sm'>
-        Add your post details in the editing panel and your changes will be
-        reflected in the post preview.
+        Add your chronicle details in the editing panel and your changes will be
+        reflected in the preview.
       </span>
-      <div className='grid grid-cols-[1fr_0.1fr_1fr] mt-10 justify-items-center flex-1'>
-        <div ref={stepperRef}>
-          <CustomStepper step={0} />
+      <div className='flex-1 flex w-3/4'>
+        <div ref={leftRef} className='p-5'>
+          <CustomStepper step={step} navigate={navigateToStep} />
+          <ChronicleForm step={step} setStep={setStep} />
         </div>
         <div ref={dividerRef} onMouseDown={onMouseDown}>
           <Separator />
         </div>
-        <div ref={previewRef}>
+        <div ref={rightRef} className='flex-1 p-5'>
           <PagePreview />
         </div>
       </div>

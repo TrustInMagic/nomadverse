@@ -23,12 +23,12 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
   },
   [`&.${stepConnectorClasses.active}`]: {
     [`& .${stepConnectorClasses.line}`]: {
-      borderColor: '#784af4',
+      borderColor: '#ab47bc',
     },
   },
   [`&.${stepConnectorClasses.completed}`]: {
     [`& .${stepConnectorClasses.line}`]: {
-      borderColor: '#784af4',
+      borderColor: '#ab47bc',
     },
   },
   [`& .${stepConnectorClasses.line}`]: {
@@ -46,10 +46,10 @@ const QontoStepIconRoot = styled('div')<{ ownerState: { active?: boolean } }>(
     height: 22,
     alignItems: 'center',
     ...(ownerState.active && {
-      color: '#784af4',
+      color: '#ab47bc',
     }),
     '& .QontoStepIcon-completedIcon': {
-      color: '#784af4',
+      color: '#ab47bc',
       zIndex: 1,
       fontSize: 18,
     },
@@ -68,9 +68,9 @@ function QontoStepIcon(props: StepIconProps) {
   return (
     <QontoStepIconRoot ownerState={{ active }} className={className}>
       {completed ? (
-        <Check className='QontoStepIcon-completedIcon' />
+        <Check className='QontoStepIcon-completedIcon cursor-pointer' />
       ) : (
-        <div className='QontoStepIcon-circle' />
+        <div className='QontoStepIcon-circle cursor-pointer' />
       )}
     </QontoStepIconRoot>
   );
@@ -78,7 +78,13 @@ function QontoStepIcon(props: StepIconProps) {
 
 const steps = ['Title', 'Body', 'Category', 'Display Image', 'Submit'];
 
-export default function CustomStepper({ step }: { step: number }) {
+export default function CustomStepper({
+  step,
+  navigate,
+}: {
+  step: number;
+  navigate: (step: number) => void;
+}) {
   return (
     <Stack sx={{ width: '100%' }} spacing={4}>
       <Stepper
@@ -86,8 +92,8 @@ export default function CustomStepper({ step }: { step: number }) {
         activeStep={step}
         connector={<QontoConnector />}
       >
-        {steps.map((label) => (
-          <Step key={label}>
+        {steps.map((label, idx) => (
+          <Step key={label} onClick={() => navigate(idx)}>
             <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
           </Step>
         ))}

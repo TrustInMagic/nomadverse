@@ -13,12 +13,19 @@ import { Error } from './components/ChronicleForm';
 import { useAuthContext } from '@/providers/AuthProvider';
 // http
 import httpClient from '@/api/http-client';
+// next
+import { useRouter } from 'next/navigation';
 // -------------------------------------------------- //
 
 const MIN_LEFT_WIDTH = 300;
 const MIN_RIGHT_WIDTH = 300;
 
-export default function Create() {
+type customError = {
+  title: string;
+  message: string;
+};
+
+export default function ChronicleCreate() {
   // resizing
 
   const [leftWidth, setLeftWidth] = React.useState<null | number>(null);
@@ -108,47 +115,61 @@ export default function Create() {
   const [displayImg, setDisplayImg] = React.useState('');
   const [errors, setErrors] = React.useState<Error[] | []>([]);
   const { user } = useAuthContext();
+  const router = useRouter();
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value as string);
+    setErrors([]);
   };
 
   const handleBodyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBody(event.target.value as string);
+    setErrors([]);
   };
 
   const handleCategoryChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value as string);
+    setErrors([]);
   };
 
   const handleDisplayImgChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setDisplayImg(event.target.value as string);
+    setErrors([]);
+  };
+
+  const setFilteredErrors = (newErr: customError): void => {
+    setErrors((prev) => {
+      const filteredErrors = prev.filter(
+        (err) => err.message !== newErr.message
+      );
+      return [...filteredErrors, newErr];
+    });
   };
 
   const validateFormFields = () => {
     if (title.trim().length === 0) {
-      const newError = { title: 'title', message: 'Tittle cannot be empty.' };
-      setErrors((prev) => [...prev, newError]);
+      const newErr = { title: 'title', message: 'Tittle cannot be empty.' };
+      setFilteredErrors(newErr);
     }
     if (body.trim().length === 0) {
-      const newError = { title: 'body', message: 'Body cannot be empty.' };
-      setErrors((prev) => [...prev, newError]);
+      const newErr = { title: 'body', message: 'Body cannot be empty.' };
+      setFilteredErrors(newErr);
     }
     if (category.length === 0) {
-      const newError = {
+      const newErr = {
         title: 'category',
         message: 'Category cannot be empty.',
       };
-      setErrors((prev) => [...prev, newError]);
+      setFilteredErrors(newErr);
     }
     if (displayImg.length === 0) {
-      const newError = {
+      const newErr = {
         title: 'image',
         message: 'Display Image cannot be empty.',
       };
-      setErrors((prev) => [...prev, newError]);
+      setFilteredErrors(newErr);
     }
   };
 
@@ -165,15 +186,23 @@ export default function Create() {
         category: category,
       };
 
-      try {
-        const response = await httpClient.post(
-          'chronicle/create',
-          JSON.stringify(newChronicle),
-          { 'Content-Type': 'application/json' }
-        );
+      if (errors.length === 0) {
+        try {
+          const response = await httpClient.post(
+            'chronicle/create',
+            JSON.stringify(newChronicle),
+            { 'Content-Type': 'application/json' }
+          );
 
-        console.log(response);
-      } catch (err) {}
+          if (response[0].title) {
+            console.log(`/chronicle/${response[0]._id}`);
+            router.push(`/chronicle/${response[0]._id}`);
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      return;
     }
   };
 

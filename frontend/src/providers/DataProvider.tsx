@@ -8,11 +8,13 @@ import { CategoryInterface, ChronicleInterface } from '../../../types/models';
 type DataContextType = {
   chronicles: ChronicleInterface[];
   categories: CategoryInterface[];
+  isLoading: boolean;
 };
 
 const DataContext = React.createContext<DataContextType>({
   chronicles: [],
   categories: [],
+  isLoading: true,
 });
 
 const useDataContext = () => {
@@ -31,11 +33,13 @@ function DataProvider({ children }: { children: ReactNode }) {
   const [categories, setCategories] = React.useState<[] | CategoryInterface[]>(
     []
   );
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     (async () => {
       const data = await httpClient.get('');
       const { chronicles, categories } = data;
+      setIsLoading(false);
 
       setChronicles(chronicles);
       setCategories(categories);
@@ -43,7 +47,7 @@ function DataProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <DataContext.Provider value={{ chronicles, categories }}>
+    <DataContext.Provider value={{ chronicles, categories, isLoading }}>
       {children}
     </DataContext.Provider>
   );

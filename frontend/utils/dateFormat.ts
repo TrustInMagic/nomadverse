@@ -5,7 +5,7 @@ const formatDate = (input: Date): string => {
   const month = String(date.getUTCMonth() + 1).padStart(2, '0');
   const year = date.getUTCFullYear();
 
-  return `${month}.${day}.${year}`;
+  return `${day}.${month}.${year}`;
 };
 
 export default formatDate;

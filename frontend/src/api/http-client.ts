@@ -10,7 +10,7 @@ const httpClient = {
     try {
       const response = await axios.get(
         `${httpClient.baseURL}:${httpClient.basePort}/${endpoint}`,
-        { headers: headers }
+        { headers: headers, withCredentials: true }
       );
       return response.data;
     } catch (error) {
@@ -27,7 +27,7 @@ const httpClient = {
       const response = await axios.post(
         `${httpClient.baseURL}:${httpClient.basePort}/${endpoint}`,
         body,
-        { headers: headers }
+        { headers: headers, withCredentials: true }
       );
       return response.data;
     } catch (error) {

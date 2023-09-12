@@ -15,8 +15,6 @@ interface ChronicleProps {
   idx: number;
 }
 
-const imageUrlRegex = /\.(jpeg|jpg|gif|png)$/i;
-
 export default function ChronicleCard({ chronicle, idx }: ChronicleProps) {
   const middlePosition = idx === 2;
   const router = useRouter();
@@ -38,11 +36,7 @@ export default function ChronicleCard({ chronicle, idx }: ChronicleProps) {
         <img
           className='w-full h-80 object-cover'
           alt='Chronicle Image'
-          src={
-            imageUrlRegex.test(chronicle.image_url)
-              ? urlDecoder(chronicle.image_url)
-              : '/'
-          }
+          src={urlDecoder(chronicle.image_url)}
           style={middlePosition ? { height: '650px' } : {}}
         />
         <CategoryTag category={chronicle.category.name} isOnCard />

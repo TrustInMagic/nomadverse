@@ -6,17 +6,19 @@ import Content from '@/components/Content';
 import Author from '@/components/Author';
 import ChroniclePagination from '@/components/ChronicleOverview/ChroniclePagination';
 import Socials from '@/components/Socials';
+import ContentSkeleton from '@/components/ContentSkeleton';
+import PaginationSkeleton from '@/components/PaginationSkeleton';
 // custom hooks
 import { useDataContext } from '@/providers/DataProvider';
 // -------------------------------------------------- //
 
 export default function Home() {
-  const { chronicles } = useDataContext();
+  const { chronicles, isLoading } = useDataContext();
 
   return (
     <div className='mt-14 p-3'>
       <div>
-        <Content chronicles={chronicles} />
+        {!isLoading ? <Content chronicles={chronicles} /> : <ContentSkeleton />}
       </div>
       <div
         className='mt-14'
@@ -28,7 +30,11 @@ export default function Home() {
         <Author />
       </div>
       <div className='mt-14 flex flex-col items-center'>
-        <ChroniclePagination chronicles={chronicles} />
+        {!isLoading ? (
+          <ChroniclePagination chronicles={chronicles} />
+        ) : (
+          <PaginationSkeleton />
+        )}
       </div>
       <div className='mt-28 flex flex-col items-center'>
         <Socials />

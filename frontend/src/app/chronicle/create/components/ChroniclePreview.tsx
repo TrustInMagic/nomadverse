@@ -4,7 +4,7 @@ import CategoryTag from '@/components/CategoryTag';
 // custom hooks
 import { useAuthContext } from '@/providers/AuthProvider';
 // utils
-import formatDate from '../../../../utils/dateFormat';
+import formatDate from '../../../../../utils/dateFormat';
 // -------------------------------------------------- //
 
 interface PagePreviewProps {

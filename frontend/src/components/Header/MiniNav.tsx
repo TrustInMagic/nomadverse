@@ -92,7 +92,7 @@ export default function MiniNav() {
   };
 
   const handleNewChronicle = () => {
-    router.push('/create');
+    router.push('/chronicle/create');
   };
 
   return (
@@ -138,9 +138,8 @@ export default function MiniNav() {
                 handleClose();
                 handleNewChronicle();
               }}
-              disabled={user.role !== 'admin'}
             >
-              New Chronicle
+              Writer Suite
             </MenuItem>
             <MenuItem
               onClick={() => {

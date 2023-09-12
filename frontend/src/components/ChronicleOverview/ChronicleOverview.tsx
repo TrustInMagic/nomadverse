@@ -10,8 +10,6 @@ import { useRouter } from 'next/navigation';
 import { ChronicleInterface } from '../../../../types/models';
 // -------------------------------------------------- //
 
-const imageUrlRegex = /\.(jpeg|jpg|gif|png)$/i;
-
 export default function ChronicleOverview({
   chronicle,
 }: {
@@ -27,11 +25,7 @@ export default function ChronicleOverview({
       <div>
         {/* eslint-disable-next-line */}
         <img
-          src={
-            imageUrlRegex.test(chronicle.image_url)
-              ? urlDecoder(chronicle.image_url)
-              : '/'
-          }
+          src={urlDecoder(chronicle.image_url)}
           alt='Chronicle'
           height='250px'
           width='400px'

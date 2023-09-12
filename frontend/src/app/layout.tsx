@@ -11,6 +11,7 @@ import '@fontsource/roboto/700.css';
 // components
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer';
+import RoundedButton from '@/components/RoundedButton';
 // providers
 import { AuthProvider } from '@/providers/AuthProvider';
 import { DataProvider } from '@/providers/DataProvider';
@@ -34,6 +35,7 @@ export default function RootLayout({
             </div>
           </DataProvider>
         </AuthProvider>
+        <RoundedButton />
         <Footer />
       </body>
     </html>

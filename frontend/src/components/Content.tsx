@@ -3,15 +3,17 @@ import React from 'react';
 import ChronicleCard from './ChronicleCard/ChronicleCard';
 // utils
 import shuffle from '../../utils/shuffleArray';
+// mui
+import Skeleton from '@mui/material/Skeleton';
 // types
 import { ChronicleInterface } from '../../../types/models';
 // -------------------------------------------------- //
 
-export default function Content({
-  chronicles,
-}: {
+interface ContentProps {
   chronicles: ChronicleInterface[];
-}) {
+}
+
+export default function Content({ chronicles }: ContentProps) {
   const shuffledChronicles = shuffle(chronicles);
 
   return (

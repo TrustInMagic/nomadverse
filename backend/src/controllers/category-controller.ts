@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler';
 // collections
 import Category from '../models/category';
+import Chronicle from '../models/chronicle';
 // validators
 import { body, validationResult } from 'express-validator';
 // typescript
@@ -16,11 +17,17 @@ export const get_all_categories = asyncHandler(
 );
 
 export const category_create = [
-  body('name', 'Name must be specified.').trim().escape().isLength({ min: 1 }),
+  body('name', 'Name must be specified.').trim().isLength({ min: 1 }).escape(),
 
   asyncHandler(async (req, res, next) => {
+    console.log('CATEGORY CREATE')
     try {
       const errors = validationResult(req);
+
+      if (!req.user) {
+        res.sendStatus(401);
+        return;
+      }
 
       if (!errors.isEmpty()) {
         res.status(400).json(errors.array());
@@ -44,3 +51,34 @@ export const category_create = [
     }
   }),
 ];
+
+export const get_chronicles_in_category = asyncHandler(
+  async (req, res, next) => {
+    const { category } = req.params;
+
+    const foundCategory = await Category.findOne({ name: category });
+
+    if (!foundCategory) {
+      res.status(404).json({ message: 'Category not found' });
+    } else {
+      try {
+        const allChroniclesInCategory = await Chronicle.find({
+          category: foundCategory._id,
+        })
+          .populate('category')
+          .populate('author')
+          .exec();
+
+        if (allChroniclesInCategory.length === 0) {
+          res
+            .status(404)
+            .json({ message: 'No chronicles found in this category' });
+        } else {
+          res.status(200).json(allChroniclesInCategory);
+        }
+      } catch (error) {
+        next(error);
+      }
+    }
+  }
+);

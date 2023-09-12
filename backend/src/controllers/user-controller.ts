@@ -15,7 +15,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const USERNAME_REGEX = /^[a-zA-Z0-9_]+$/;
 
 export const get_all_users = asyncHandler(async (req, res, next) => {
-  const allUsers = await User.find().exec();
+  const allUsers = await User.find({}, 'username email').exec();
 
   res.json(allUsers);
 });
@@ -102,8 +102,15 @@ export const create_user = [
 export const login_user = [
   passport.authenticate('local'),
   (req: Request, res: Response) => {
-    const { username } = req.user;
-    res.json({ username: username });
+    const { username, role, first_name, last_name, email } = req.user;
+
+    res.json({
+      username: username,
+      role: role,
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+    });
   },
 ];
 
@@ -112,6 +119,6 @@ export const logout_user = asyncHandler(async (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect('/');
+    res.sendStatus(200);
   });
 });

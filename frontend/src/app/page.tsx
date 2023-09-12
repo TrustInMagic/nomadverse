@@ -6,24 +6,12 @@ import Content from '@/components/Content';
 import Author from '@/components/Author';
 import ChroniclePagination from '@/components/ChronicleOverview/ChroniclePagination';
 import Socials from '@/components/Socials';
-// http
-import httpClient from '@/api/http-client';
-// types
-import { ChronicleInterface } from '../../../types/models';
+// custom hooks
+import { useDataContext } from '@/providers/DataProvider';
 // -------------------------------------------------- //
 
 export default function Home() {
-  const [chronicles, setChronicles] = React.useState<[] | ChronicleInterface[]>(
-    []
-  );
-
-  React.useEffect(() => {
-    (async () => {
-      const data = await httpClient.get('');
-      const { chronicles, categories } = data;
-      setChronicles(chronicles);
-    })();
-  }, []);
+  const { chronicles } = useDataContext();
 
   return (
     <div className='mt-14 p-3'>

@@ -32,13 +32,9 @@ const userSchema = new Schema({
   last_name: { type: String, required: true, minLength: 2 },
   role: {
     type: String,
-    enum: ['user', 'admin', 'writer'],
+    enum: ['user', 'admin', 'author'],
     default: 'user',
   },
-});
-
-userSchema.virtual('url').get(function () {
-  return `/user/${this._id}`;
 });
 
 export default mongoose.model<UserInterfaceExtended>('User', userSchema);

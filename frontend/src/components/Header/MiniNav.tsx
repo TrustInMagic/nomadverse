@@ -84,7 +84,7 @@ export default function MiniNav() {
       console.error('Error logging out', err);
     }
     setUser(null);
-    localStorage.removeItem('user');
+    window.localStorage.removeItem('user');
   };
 
   const handleProfile = () => {

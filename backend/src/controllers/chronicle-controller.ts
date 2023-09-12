@@ -42,6 +42,7 @@ export const chronicle_create = [
 
       if (!req.user) {
         res.sendStatus(401);
+        return;
       }
 
       if (!errors.isEmpty()) {
@@ -61,7 +62,12 @@ export const chronicle_create = [
         });
 
         await chronicle.save();
-        res.sendStatus(200);
+        const newChronicle = await Chronicle.find({ title: req.body.title })
+          .populate('_id')
+          .exec();
+
+        res.status(200).json(newChronicle);
+        return;
       }
     } catch (err) {
       return next(err);
@@ -70,9 +76,15 @@ export const chronicle_create = [
 ];
 
 export const chronicle_get = asyncHandler(async (req, res, next) => {
-  const chronicleId = req.body.chronicleId;
+  const chronicleId = req.params.chronicleId;
+  if (!chronicleId) {
+    res.status(400).json('No chronicleId specified.');
+  }
   try {
-    const chronicle = await Chronicle.findById(chronicleId);
+    const chronicle = await Chronicle.findById(chronicleId)
+      .populate('author')
+      .populate('category')
+      .exec();
     res.json(chronicle);
   } catch (err) {
     return next(err);

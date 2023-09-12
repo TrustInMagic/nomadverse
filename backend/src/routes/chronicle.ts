@@ -11,6 +11,7 @@ const router = express.Router();
 // create new chronicle
 router.post('/create', chronicle_create);
 
-router.get('/find', chronicle_get);
+// get specific chronicle
+router.get('/:chronicleId', chronicle_get);
 
 export default router;

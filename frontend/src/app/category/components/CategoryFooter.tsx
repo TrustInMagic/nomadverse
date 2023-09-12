@@ -1,24 +1,12 @@
 import React from 'react';
-// http
-import httpClient from '@/api/http-client';
 // components
 import CategoryTag from '@/components/CategoryTag';
-// types
-import { CategoryInterface } from '../../../../../types/models';
+// custom hooks
+import { useDataContext } from '@/providers/DataProvider';
 // -------------------------------------------------- //
 
 export default function CategoryFooter() {
-  const [categories, setCategories] = React.useState<[] | CategoryInterface[]>(
-    []
-  );
-
-  React.useEffect(() => {
-    (async () => {
-      const data = await httpClient.get('');
-      const { categories } = data;
-      setCategories(categories);
-    })();
-  }, []);
+  const { categories } = useDataContext();
 
   return (
     <div className='mt-14 font-semibold text-lg'>

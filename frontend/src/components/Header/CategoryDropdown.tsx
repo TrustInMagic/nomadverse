@@ -9,8 +9,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-// http
-import httpClient from '@/api/http-client';
 // utils
 import capitalizeWord from '../../../utils/capitalizeWord';
 import shuffle from '../../../utils/shuffleArray';
@@ -19,11 +17,8 @@ import ChronicleGlimpse from './ChronicleGlimpse';
 // next
 import { useRouter } from 'next/navigation';
 import { useParams } from 'next/navigation';
-// types
-import {
-  CategoryInterface,
-  ChronicleInterface,
-} from '../../../../types/models';
+// custom hooks
+import { useDataContext } from '@/providers/DataProvider';
 // -------------------------------------------------- //
 
 type Anchor = 'top';
@@ -33,24 +28,11 @@ export default function CategoryDropdown() {
   const [selectedCategory, setSelectedCategory] = React.useState<null | string>(
     null
   );
-  const [categories, setCategories] = React.useState<[] | CategoryInterface[]>(
-    []
-  );
-  const [chronicles, setChronicles] = React.useState<[] | ChronicleInterface[]>(
-    []
-  );
+
+  const { categories, chronicles } = useDataContext();
 
   const router = useRouter();
   const params = useParams();
-
-  React.useEffect(() => {
-    (async () => {
-      const allData = await httpClient.get('');
-      const { categories, chronicles } = allData;
-      setCategories(categories);
-      setChronicles(chronicles);
-    })();
-  }, []);
 
   React.useEffect(() => {
     const { category } = params;

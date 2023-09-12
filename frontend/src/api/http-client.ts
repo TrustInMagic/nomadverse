@@ -1,6 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios';
 // -------------------------------------------------- //
 
+axios.defaults.withCredentials = true;
+
 const httpClient = {
   baseURL: process.env.NEXT_PUBLIC_BASEURL,
   basePort: process.env.NEXT_PUBLIC_BASEPORT,
@@ -18,7 +20,7 @@ const httpClient = {
   },
   post: async (
     endpoint: string,
-    body?: string | Array<any>,
+    body?: any,
     headers?: AxiosRequestConfig['headers']
   ) => {
     try {

@@ -25,10 +25,12 @@ const useAuthContext = () => {
 };
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = React.useState<UserInterface | null>(() => {
-    const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
-  });
+  const [user, setUser] = React.useState<UserInterface | null>(null);
+
+  React.useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    setUser(storedUser ? JSON.parse(storedUser) : null);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>

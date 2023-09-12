@@ -61,7 +61,7 @@ export default function Login() {
         { 'Content-Type': 'application/json' }
       );
       if (response.username) {
-        localStorage.setItem('user', JSON.stringify(response));
+        window.localStorage.setItem('user', JSON.stringify(response));
         setUser(response)
         router.push('/');
       }

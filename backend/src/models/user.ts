@@ -1,7 +1,8 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
+import { UserInterface } from '../../../types/models';
 // -------------------------------------------------- //
 
-const Schema = mongoose.Schema;
+interface UserInterfaceExtended extends UserInterface, Document {}
 
 const userSchema = new Schema({
   email: {
@@ -31,13 +32,9 @@ const userSchema = new Schema({
   last_name: { type: String, required: true, minLength: 2 },
   role: {
     type: String,
-    enum: ['user', 'admin', 'writer'],
+    enum: ['user', 'admin', 'author'],
     default: 'user',
   },
 });
 
-userSchema.virtual('url').get(function () {
-  return `/user/${this._id}`;
-});
-
-export default mongoose.model('User', userSchema);
+export default mongoose.model<UserInterfaceExtended>('User', userSchema);

@@ -4,9 +4,13 @@ import createError from 'http-errors';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import cors from 'cors';
 // routes
 import indexRouter from './routes/index';
 import authRouter from './routes/auth';
+import chronicleRouter from './routes/chronicle';
+import categoryRouter from './routes/category';
+import subChronicleRouter from './routes/sub-chronicle'
 // db
 import mongoose from 'mongoose';
 // bcrypt
@@ -38,9 +42,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// session
+app.use(
+  session({
+    secret: process.env.SECRET_PASSPORT,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
 // passport config
 const localStrategy = passportLocal.Strategy;
-
 passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
@@ -75,19 +87,26 @@ passport.use(
     }
   )
 );
+
+// passport initialization
 app.use(passport.initialize());
+app.use(passport.session());
+
+// CORS
 app.use(
-  session({
-    secret: process.env.SECRET_PASSPORT,
-    resave: false,
-    saveUninitialized: true,
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+    methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
   })
 );
-app.use(passport.session());
 
 // routes
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/chronicle', chronicleRouter);
+app.use('/category', categoryRouter);
+app.use('/sub-chronicle', subChronicleRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

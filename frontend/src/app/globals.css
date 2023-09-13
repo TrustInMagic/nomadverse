@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+.custom-shadow {
+  box-shadow: -10px 10px 15px rgba(0, 0, 0, 0.2),
+    -20px 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+.custom-link {
+  width: 0px;
+  height: 1px;
+  transition: width 0.3s ease-in-out;
+}
+
+.relative-div:hover .custom-link {
+  width: 100%;
+}

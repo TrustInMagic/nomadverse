@@ -34,7 +34,7 @@ export const sub_chronicle_create = [
         await subChronicle.save();
 
         const newSubChronicle = await SubChronicle.find({
-          chronicle: chronicleToAddTo,
+          description: req.body.description,
         })
           .populate('_id')
           .exec();

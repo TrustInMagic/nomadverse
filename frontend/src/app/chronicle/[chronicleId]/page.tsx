@@ -5,6 +5,7 @@ import React from 'react';
 import httpClient from '@/api/http-client';
 // components
 import Header from '../components/Header';
+import CommentSection from '../components/CommentSection';
 // utils
 import { urlDecoder, specialCharDecoder } from '../../../../utils/decoders';
 // custom hook
@@ -167,6 +168,7 @@ export default function ChroniclePage({
               {showForm ? 'Close form' : 'Build Subchronicle'}
             </Button>
           )}
+          <CommentSection chronicleTitle={chronicle.title} />
         </div>
       )}
     </>

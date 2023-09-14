@@ -120,7 +120,7 @@ const Body: React.FC<BodyProps> = ({ setStep, handleChange, body }) => (
       multiline
       rows={8}
       sx={{ width: '100%' }}
-      helperText='This editor uses Markdown to build the content of Chronicles.'
+      helperText='Add the content of your Chronicle.'
       required
       onChange={handleChange}
       value={body}

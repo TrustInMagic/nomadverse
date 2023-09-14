@@ -84,6 +84,7 @@ export const chronicle_get = asyncHandler(async (req, res, next) => {
     const chronicle = await Chronicle.findById(chronicleId)
       .populate('author')
       .populate('category')
+      .populate('sub_chronicles')
       .exec();
     res.json(chronicle);
   } catch (err) {

@@ -35,16 +35,14 @@ export const sub_chronicle_create = [
 
         const newSubChronicle = await SubChronicle.find({
           description: req.body.description,
-        })
-          .populate('_id')
-          .exec();
+        }).exec();
 
         await Chronicle.findOneAndUpdate(
           { _id: req.body.chronicle_id },
           { $push: { sub_chronicles: newSubChronicle } }
         );
 
-        res.status(200).json(subChronicle);
+        res.status(200).json(newSubChronicle);
         return;
       }
     } catch (err) {

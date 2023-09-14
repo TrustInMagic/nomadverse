@@ -1,6 +1,6 @@
 import React from 'react';
 // utils
-import urlDecoder from '../../../utils/urlDecoder';
+import {urlDecoder} from '../../../utils/decoders';
 import capitalizeWord from '../../../utils/capitalizeWord';
 // next
 import { useRouter } from 'next/navigation';

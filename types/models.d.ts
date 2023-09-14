@@ -9,7 +9,7 @@ export interface ChronicleInterface {
   author: mongoose.Types.ObjectId | string;
   description: string;
   category: mongoose.Types.ObjectId | string;
-  sub_chronicles?: mongoose.Types.ObjectId[] | string;
+  sub_chronicles?: mongoose.Types.ObjectId[];
   url: string;
   _id: string;
 }

@@ -9,12 +9,15 @@ import Alert from '@mui/material/Alert';
 import { useAuthContext } from '@/providers/AuthProvider';
 // http
 import httpClient from '@/api/http-client';
+// custom hooks
+import { useDataContext } from '@/providers/DataProvider';
 // -------------------------------------------------- //
 
 export default function CategoryCreate() {
   const [category, setCategory] = React.useState('');
   const [createSuccess, setCreateSuccess] = React.useState(false);
   const { user } = useAuthContext();
+  const { fetchData } = useDataContext();
 
   const handleClick = async () => {
     if (!user || (user && user.role !== 'admin' && user.role !== 'author')) {
@@ -35,6 +38,7 @@ export default function CategoryCreate() {
           setCategory('');
           setCreateSuccess(true);
           setTimeout(() => setCreateSuccess(false), 3000);
+          fetchData();
         }
       } catch (err) {
         console.error(err);

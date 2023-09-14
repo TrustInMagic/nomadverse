@@ -26,6 +26,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
+      <head>
+        <link rel='icon' href='assets/icon.svg' type='image/x-icon' />
+        <title>Nomadverse</title>
+      </head>
       <body className={`${inter.className} flex flex-col items-center grow`}>
         <AuthProvider>
           <DataProvider>

@@ -11,6 +11,7 @@ import { SelectChangeEvent } from '@mui/material';
 import { Error } from './components/ChronicleForm';
 // custom hooks
 import { useAuthContext } from '@/providers/AuthProvider';
+import { useDataContext } from '@/providers/DataProvider';
 // http
 import httpClient from '@/api/http-client';
 // next
@@ -115,6 +116,8 @@ export default function ChronicleCreate() {
   const [displayImg, setDisplayImg] = React.useState('');
   const [errors, setErrors] = React.useState<Error[] | []>([]);
   const { user } = useAuthContext();
+  const { fetchData } = useDataContext();
+
   const router = useRouter();
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -195,8 +198,8 @@ export default function ChronicleCreate() {
           );
 
           if (response[0].title) {
-            console.log(`/chronicle/${response[0]._id}`);
             router.push(`/chronicle/${response[0]._id}`);
+            fetchData();
           }
         } catch (err) {
           console.error(err);

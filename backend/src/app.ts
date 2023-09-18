@@ -10,7 +10,8 @@ import indexRouter from './routes/index';
 import authRouter from './routes/auth';
 import chronicleRouter from './routes/chronicle';
 import categoryRouter from './routes/category';
-import subChronicleRouter from './routes/sub-chronicle'
+import subChronicleRouter from './routes/sub-chronicle';
+import commentRouter from './routes/comment';
 // db
 import mongoose from 'mongoose';
 // bcrypt
@@ -106,7 +107,8 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/chronicle', chronicleRouter);
 app.use('/category', categoryRouter);
-app.use('/sub-chronicle', subChronicleRouter)
+app.use('/sub-chronicle', subChronicleRouter);
+app.use('/comment', commentRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

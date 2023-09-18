@@ -10,7 +10,7 @@ export interface ChronicleInterface {
   description: string;
   category: mongoose.Types.ObjectId | string;
   sub_chronicles?: mongoose.Types.ObjectId[];
-  url: string;
+  comments?: mongoose.Types.ObjectId[];
   _id: string;
 }
 
@@ -28,4 +28,13 @@ export interface SubChronicleInterface {
   image_url: string;
   description: string;
   chronicle: mongoose.Types.ObjectId | string;
+}
+
+export interface CommentInterface {
+  author: string;
+  date: Date;
+  content: string;
+  likes: mongoose.Types.ObjectId[];
+  replies: mongoose.Types.ObjectId[];
+  _id: string;
 }

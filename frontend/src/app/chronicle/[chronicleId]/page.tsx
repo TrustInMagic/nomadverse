@@ -16,6 +16,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 // types
 import { ChronicleInterface } from '../../../../../types/models';
+import { CommentInterface } from '../../../../../types/models';
 // -------------------------------------------------- //
 
 export default function ChroniclePage({
@@ -27,6 +28,7 @@ export default function ChroniclePage({
   const [chronicle, setChronicle] = React.useState<ChronicleInterface | null>(
     null
   );
+  const [comments, setComments] = React.useState<CommentInterface[] | []>([]);
   const [showForm, setShowForm] = React.useState(false);
   const [subChronicleImg, setSubChronicleImg] = React.useState('');
   const [subChronicleBody, setSubChronicleBody] = React.useState('');
@@ -36,7 +38,9 @@ export default function ChroniclePage({
 
   const fetchChronicleData = React.useCallback(async () => {
     const data = await httpClient.get(`chronicle/${chronicleId}`);
+    const chronicleData = await httpClient.get(`comment/${chronicleId}`);
     setChronicle(data);
+    setComments(chronicleData);
   }, [chronicleId]);
 
   const handleBuildSubChronicle = () => {
@@ -168,7 +172,12 @@ export default function ChroniclePage({
               {showForm ? 'Close form' : 'Build Subchronicle'}
             </Button>
           )}
-          <CommentSection chronicleTitle={chronicle.title} />
+          <CommentSection
+            chronicleId={chronicle._id}
+            chronicleTitle={chronicle.title}
+            comments={comments}
+            fetchData={fetchChronicleData}
+          />
         </div>
       )}
     </>

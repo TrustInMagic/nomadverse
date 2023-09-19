@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { CommentInterface } from '../../../types/models';
+import { CommentInterface } from '../../types/models';
 // -------------------------------------------------- //
 
 interface CommentInterfaceExtended extends CommentInterface, Document {}

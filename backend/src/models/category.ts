@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema } from 'mongoose';
 // types
-import { CategoryInterface } from '../../../types/models';
+import { CategoryInterface } from '../../types/models';
 // -------------------------------------------------- //
 
 interface CategoryInterfaceExtended extends Document, CategoryInterface {}

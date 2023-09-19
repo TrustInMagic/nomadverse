@@ -14,8 +14,8 @@ import httpClient from '@/api/http-client';
 // next
 import { useRouter } from 'next/navigation';
 // types
-import { CommentInterface } from '../../../../../types/models';
-import { UserInterface } from '../../../../../types/models';
+import { CommentInterface } from '../../../../types/models';
+import { UserInterface } from '../../../../types/models';
 // -------------------------------------------------- //
 
 interface CommentSectionProps {

@@ -15,15 +15,17 @@ import { useDataContext } from '@/providers/DataProvider';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 // types
-import { ChronicleInterface } from '../../../../../types/models';
-import { CommentInterface } from '../../../../../types/models';
+import { ChronicleInterface } from '../../../../types/models';
+import { CommentInterface } from '../../../../types/models';
 // -------------------------------------------------- //
 
-export default function ChroniclePage({
-  params,
-}: {
-  [k: string]: { chronicleId: string };
-}) {
+interface ChroniclePageProps {
+  params: {
+    chronicleId: string;
+  };
+}
+
+export default function ChroniclePage({ params }: ChroniclePageProps) {
   const { chronicleId } = params;
   const [chronicle, setChronicle] = React.useState<ChronicleInterface | null>(
     null

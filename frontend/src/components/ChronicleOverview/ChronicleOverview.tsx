@@ -1,13 +1,13 @@
 import React from 'react';
 // utils
-import {urlDecoder} from '../../../utils/decoders';
+import { urlDecoder } from '../../../utils/decoders';
 // components
 import CategoryTag from '../CategoryTag';
 import ChronicleCardDetail from '../ChronicleCard/ChronicleCardDetail';
 // next
 import { useRouter } from 'next/navigation';
 // types
-import { ChronicleInterface } from '../../../../types/models';
+import { ChronicleInterface } from '../../../types/models';
 // -------------------------------------------------- //
 
 export default function ChronicleOverview({

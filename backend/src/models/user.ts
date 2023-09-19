@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { UserInterface } from '../../../types/models';
+import { UserInterface } from '../../types/models';
 // -------------------------------------------------- //
 
 interface UserInterfaceExtended extends UserInterface, Document {}

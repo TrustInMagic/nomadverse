@@ -132,7 +132,7 @@ export default function Registration() {
   };
 
   const handleSubmitForm = async (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
     setLoading(true);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 // types
-import { CategoryInterface } from '../../../types/models';
+import { CategoryInterface } from '../../types/models';
 // -------------------------------------------------- //
 
 export default function CategoryTag({

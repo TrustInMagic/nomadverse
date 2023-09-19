@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 // types
-import { SubChronicleInterface } from '../../../types/models';
+import { SubChronicleInterface } from '../../types/models';
 // -------------------------------------------------- //
 
 interface SubChronicleInterfaceExtended

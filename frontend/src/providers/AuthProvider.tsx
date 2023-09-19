@@ -2,7 +2,7 @@
 
 import React, { ReactNode, Dispatch, SetStateAction } from 'react';
 // types
-import { UserInterface } from '../../../types/models';
+import { UserInterface } from '../../types/models';
 // -------------------------------------------------- //
 
 interface AuthContextType {

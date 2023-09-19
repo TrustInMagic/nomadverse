@@ -36,7 +36,7 @@ export const chronicle_create = [
 
   body('category', 'Category must be specified.').trim().escape(),
 
-  asyncHandler(async (req, res, next) => {
+  asyncHandler(async (req: any, res, next) => {
     try {
       const errors = validationResult(req);
 

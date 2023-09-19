@@ -46,7 +46,7 @@ app.use(cookieParser());
 // session
 app.use(
   session({
-    secret: process.env.SECRET_PASSPORT,
+    secret: process.env.SECRET_PASSPORT as string,
     resave: false,
     saveUninitialized: true,
   })
@@ -54,10 +54,10 @@ app.use(
 
 // passport config
 const localStrategy = passportLocal.Strategy;
-passport.serializeUser(function (user, done) {
+passport.serializeUser(function (user: any, done: any) {
   done(null, user.id);
 });
-passport.deserializeUser(async function (id, done) {
+passport.deserializeUser(async function (id: any, done: any) {
   try {
     const user = await User.findById(id);
     done(null, user);
@@ -71,7 +71,7 @@ passport.use(
       usernameField: 'email',
       passwordField: 'password',
     },
-    async (username, password, done) => {
+    async (username: any, password: any, done: any) => {
       try {
         const user = await User.findOne({ email: username });
         const match = await bcrypt.compare(password, user?.password || '');

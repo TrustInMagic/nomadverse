@@ -4,7 +4,7 @@ import ChronicleCard from './ChronicleCard/ChronicleCard';
 // utils
 import shuffle from '../../utils/shuffleArray';
 // types
-import { ChronicleInterface } from '../../../types/models';
+import { ChronicleInterface } from '../../types/models';
 // -------------------------------------------------- //
 
 interface ContentProps {

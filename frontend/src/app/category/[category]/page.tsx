@@ -7,14 +7,16 @@ import httpClient from '@/api/http-client';
 import ChronicleOverview from '@/components/ChronicleOverview/ChronicleOverview';
 import CategoryFooter from '../components/CategoryFooter';
 // types
-import { ChronicleInterface } from '../../../../../types/models';
+import { ChronicleInterface } from '../../../../types/models';
 // -------------------------------------------------- //
 
-export default function Category({
-  params,
-}: {
-  [k: string]: { category: string };
-}) {
+interface CategoryProps {
+  params: {
+    category: string;
+  };
+}
+
+export default function Category({ params }: CategoryProps) {
   const { category } = params;
   const [chroniclesInCategory, setChroniclesInCategory] = React.useState<
     null | ChronicleInterface[]

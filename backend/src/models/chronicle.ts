@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { ChronicleInterface } from '../../../types/models';
+import { ChronicleInterface } from '../../types/models';
 // -------------------------------------------------- //
 
 interface ChronicleInterfaceExtended extends ChronicleInterface {}

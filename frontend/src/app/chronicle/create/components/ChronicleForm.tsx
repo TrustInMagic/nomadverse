@@ -10,10 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useDataContext } from '@/providers/DataProvider';
 import { useAuthContext } from '@/providers/AuthProvider';
 // types
-import {
-  CategoryInterface,
-  UserInterface,
-} from '../../../../../../types/models';
+import { CategoryInterface, UserInterface } from '../../../../../types/models';
 // -------------------------------------------------- //
 
 type SetStep = (prev: (prev: number) => number) => void;

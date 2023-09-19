@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 // http
 import httpClient from '@/api/http-client';
 // types
-import { CategoryInterface, ChronicleInterface } from '../../../types/models';
+import { CategoryInterface, ChronicleInterface } from '../../types/models';
 // -------------------------------------------------- //
 
 type DataContextType = {

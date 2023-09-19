@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { MouseEvent } from 'react';
 // mui
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -71,7 +71,7 @@ export default function MiniNav() {
     router.push('/auth/login');
   };
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 

@@ -8,7 +8,7 @@ import ChronicleOverview from '@/components/ChronicleOverview/ChronicleOverview'
 // next
 import { useSearchParams } from 'next/navigation';
 // types
-import { ChronicleInterface } from '../../../../types/models';
+import { ChronicleInterface } from '../../../types/models';
 // -------------------------------------------------- //
 
 export default function Search() {

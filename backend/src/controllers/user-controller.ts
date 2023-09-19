@@ -70,7 +70,7 @@ export const create_user = [
       bcrypt.hash(
         req.body.password,
         10,
-        async (err: Error, hashedPassword: string) => {
+        async (err: Error | null, hashedPassword: string) => {
           if (err) {
             next(err);
           } else {
@@ -102,7 +102,7 @@ export const create_user = [
 export const login_user = [
   passport.authenticate('local'),
   (req: Request, res: Response) => {
-    const { username, role, first_name, last_name, email } = req.user;
+    const { username, role, first_name, last_name, email } = req.user as any;
 
     res.json({
       username: username,

@@ -1,20 +1,22 @@
 import React from 'react';
 // utils
-import {urlDecoder} from '../../../utils/decoders';
+import { urlDecoder } from '../../../utils/decoders';
 import capitalizeWord from '../../../utils/capitalizeWord';
 // next
 import { useRouter } from 'next/navigation';
 // types
-import { ChronicleInterface } from '../../../../types/models';
+import { ChronicleInterface } from '../../../types/models';
 // -------------------------------------------------- //
+
+interface ChronicleGlimpseProps {
+  chronicle: ChronicleInterface;
+  closeDrawer: (param: any) => void;
+}
 
 export default function ChronicleGlimpse({
   chronicle,
   closeDrawer,
-}: {
-  chronicle: ChronicleInterface;
-  closeDrawer: (object: { [k: string]: boolean }) => void;
-}) {
+}: ChronicleGlimpseProps) {
   const decodedURL = urlDecoder(chronicle.image_url);
   const router = useRouter();
 

@@ -6,7 +6,7 @@ import Pagination from '@mui/material/Pagination';
 // components
 import ChronicleOverview from './ChronicleOverview';
 // types
-import { ChronicleInterface } from '../../../../types/models';
+import { ChronicleInterface } from '../../../types/models';
 // -------------------------------------------------- //
 
 const CHRONICLES_ON_PAGE = 5;

@@ -1,6 +1,6 @@
 import React from 'react';
 // utils
-import urlDecoder from '../../../utils/urlDecoder';
+import {urlDecoder} from '../../../utils/decoders';
 // components
 import CategoryTag from '../CategoryTag';
 import ChronicleCardDetail from '../ChronicleCard/ChronicleCardDetail';

@@ -5,7 +5,7 @@ import ChronicleCardDetail from './ChronicleCardDetail';
 // next
 import { useRouter } from 'next/navigation';
 // utils
-import urlDecoder from '../../../utils/urlDecoder';
+import { urlDecoder } from '../../../utils/decoders';
 //types
 import { ChronicleInterface } from '../../../../types/models';
 // -------------------------------------------------- //

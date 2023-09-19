@@ -12,7 +12,10 @@ const chronicleSchema = new Schema({
   description: { type: String, minLength: 10, required: true },
   category: { type: Schema.Types.ObjectId, ref: 'Category', required: true },
   sub_chronicles: [{ type: Schema.Types.ObjectId, ref: 'SubChronicle' }],
+  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
 });
+
+chronicleSchema.index({ title: 'text' });
 
 export default mongoose.model<ChronicleInterfaceExtended>(
   'Chronicle',

@@ -3,8 +3,6 @@ import React from 'react';
 import ChronicleCard from './ChronicleCard/ChronicleCard';
 // utils
 import shuffle from '../../utils/shuffleArray';
-// mui
-import Skeleton from '@mui/material/Skeleton';
 // types
 import { ChronicleInterface } from '../../../types/models';
 // -------------------------------------------------- //

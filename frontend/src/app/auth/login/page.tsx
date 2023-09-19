@@ -20,6 +20,7 @@ import httpClient from '@/api/http-client';
 import { useAuthContext } from '@/providers/AuthProvider';
 // next
 import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 // types
 import { ChangeEvent } from 'react';
 // -------------------------------------------------- //
@@ -33,6 +34,7 @@ export default function Login() {
   const [loading, setLoading] = React.useState(false);
 
   const router = useRouter();
+  const search = useSearchParams();
   const { setUser } = useAuthContext();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -62,8 +64,13 @@ export default function Login() {
       );
       if (response.username) {
         window.localStorage.setItem('user', JSON.stringify(response));
-        setUser(response)
-        router.push('/');
+        setUser(response);
+        const prevLocation = search.get('from');
+        if (prevLocation) {
+          router.push(`${prevLocation}#comments`);
+        } else {
+          router.push('/');
+        }
       }
     } catch (err: any) {
       setLoginErr(err.response.data);

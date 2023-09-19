@@ -9,13 +9,10 @@ type DataContextType = {
   chronicles: ChronicleInterface[];
   categories: CategoryInterface[];
   isLoading: boolean;
+  fetchData: () => void;
 };
 
-const DataContext = React.createContext<DataContextType>({
-  chronicles: [],
-  categories: [],
-  isLoading: true,
-});
+const DataContext = React.createContext<null | DataContextType>(null);
 
 const useDataContext = () => {
   const context = React.useContext(DataContext);
@@ -35,19 +32,23 @@ function DataProvider({ children }: { children: ReactNode }) {
   );
   const [isLoading, setIsLoading] = React.useState(true);
 
-  React.useEffect(() => {
-    (async () => {
-      const data = await httpClient.get('');
-      const { chronicles, categories } = data;
-      setIsLoading(false);
+  const fetchData = React.useCallback(async () => {
+    const data = await httpClient.get('');
+    const { chronicles, categories } = data;
+    setIsLoading(false);
 
-      setChronicles(chronicles);
-      setCategories(categories);
-    })();
+    setChronicles(chronicles);
+    setCategories(categories);
   }, []);
 
+  React.useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   return (
-    <DataContext.Provider value={{ chronicles, categories, isLoading }}>
+    <DataContext.Provider
+      value={{ chronicles, categories, isLoading, fetchData }}
+    >
       {children}
     </DataContext.Provider>
   );

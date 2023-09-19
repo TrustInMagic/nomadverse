@@ -80,6 +80,9 @@ export default function MiniNav() {
     try {
       const response = await httpClient.post('auth/logout');
       console.log(`Response: ${JSON.stringify(response)}`);
+      if (response === 'OK') {
+        router.push('/');
+      }
     } catch (err) {
       console.error('Error logging out', err);
     }

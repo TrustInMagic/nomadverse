@@ -22,10 +22,13 @@ const inter = Inter({ subsets: ['latin'] });
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode ;
 }) {
   return (
     <html lang='en'>
+      <head>
+        <title>Nomadverse</title>
+      </head>
       <body className={`${inter.className} flex flex-col items-center grow`}>
         <AuthProvider>
           <DataProvider>

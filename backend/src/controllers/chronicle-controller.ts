@@ -103,9 +103,5 @@ export const chronicle_search = asyncHandler(async (req, res, next) => {
     }
   });
 
-  if (searchedChronicles.length > 0) {
-    res.status(200).json(searchedChronicles);
-  } else {
-    res.status(404).json({ message: 'No chronicles found' });
-  }
+  res.status(200).json(searchedChronicles);
 });

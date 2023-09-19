@@ -29,12 +29,16 @@ export default function Search() {
   return (
     <div className='mt-20 font-bold text-xl p-4 flex flex-col'>
       <span className='capitalize'>Search: {search.get('search')}</span>
-      {chronicles && (
+      {chronicles.length > 0 ? (
         <div className='mt-10 flex flex-col gap-6'>
           {chronicles.map((chronicle: ChronicleInterface) => (
             <ChronicleOverview key={chronicle.title} chronicle={chronicle} />
           ))}
         </div>
+      ) : (
+        <span className='mt-24 self-center font-normal text-base'>{`No chronicles containing "${search.get(
+          'search'
+        )}" were found.`}</span>
       )}
     </div>
   );

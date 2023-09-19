@@ -15,6 +15,8 @@ const chronicleSchema = new Schema({
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
 });
 
+chronicleSchema.index({ title: 'text' });
+
 export default mongoose.model<ChronicleInterfaceExtended>(
   'Chronicle',
   chronicleSchema

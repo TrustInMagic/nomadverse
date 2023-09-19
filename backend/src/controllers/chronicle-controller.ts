@@ -91,3 +91,21 @@ export const chronicle_get = asyncHandler(async (req, res, next) => {
     return next(err);
   }
 });
+
+export const chronicle_search = asyncHandler(async (req, res, next) => {
+  const search = req.query.search as string;
+  const allChronicles = await Chronicle.find().populate('category');
+  const searchedChronicles: any[] = [];
+
+  allChronicles.forEach((chronicle) => {
+    if (chronicle.title.toLocaleLowerCase().includes(search.toLowerCase())) {
+      searchedChronicles.push(chronicle);
+    }
+  });
+
+  if (searchedChronicles.length > 0) {
+    res.status(200).json(searchedChronicles);
+  } else {
+    res.status(404).json({ message: 'No chronicles found' });
+  }
+});

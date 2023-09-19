@@ -47,7 +47,7 @@ export default function ChronicleCreate() {
     setDragging(true);
   };
 
-  const onMouseMove = (e: React.MouseEvent): void => {
+  const onMouseMove = (e: MouseEvent): void => {
     if (dragging && leftWidth && rightWidth && separatorXPosition) {
       const newLeftWidth = leftWidth + e.clientX - separatorXPosition;
       const newRightWidth = rightWidth - e.clientX + separatorXPosition;

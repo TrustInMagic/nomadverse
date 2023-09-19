@@ -46,7 +46,7 @@ export default function Login() {
   };
 
   const handleSubmitForm = async (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
     setLoading(true);

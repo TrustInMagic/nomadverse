@@ -8,6 +8,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Avatar from '@mui/material/Avatar';
+// components
+import CustomSearchField from './CustomSearchField';
 // providers
 import { useAuthContext } from '@/providers/AuthProvider';
 // http
@@ -60,6 +62,7 @@ function BackgroundLetterAvatar({ name }: { name: string }) {
 export default function MiniNav() {
   const router = useRouter();
   const { user, setUser } = useAuthContext();
+  const [expandSearch, setExpandSearch] = React.useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -100,6 +103,18 @@ export default function MiniNav() {
 
   return (
     <Stack direction='row' spacing={2} alignItems='center'>
+      {!expandSearch ? (
+        <div
+          className='flex items-center'
+          onClick={() => setExpandSearch(true)}
+        >
+          <SearchIcon className='cursor-pointer' />
+        </div>
+      ) : (
+        <div>
+          <CustomSearchField setExpandedSearch={setExpandSearch} />
+        </div>
+      )}
       {!user ? (
         <Button
           variant='contained'
@@ -155,7 +170,6 @@ export default function MiniNav() {
           </Menu>
         </div>
       )}
-      <SearchIcon className='cursor-pointer' />
     </Stack>
   );
 }

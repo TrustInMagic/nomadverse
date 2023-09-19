@@ -17,6 +17,7 @@ export default function Author() {
           Click the 'Apply' button to submit your application and showcase your
           writing skills! We look forward to your contribution.
         </span>
+        <span className='text-sm text-slate-500 -mt-2'>*Under construction</span>
         <div>
           <Button variant='outlined' color='secondary'>
             Apply

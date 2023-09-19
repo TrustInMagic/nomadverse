@@ -31,7 +31,7 @@ export default function Category({
     <div className='mt-20 font-bold text-xl p-4 flex flex-col'>
       <span className='capitalize'>Category: {category}</span>
       {chroniclesInCategory && (
-        <div className='mt-10 flex flex-col gap-10'>
+        <div className='mt-10 flex flex-col gap-6'>
           {chroniclesInCategory.map((chronicle: ChronicleInterface) => (
             <ChronicleOverview key={chronicle.title} chronicle={chronicle} />
           ))}

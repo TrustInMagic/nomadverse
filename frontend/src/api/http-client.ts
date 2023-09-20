@@ -4,12 +4,11 @@ import axios, { AxiosRequestConfig } from 'axios';
 axios.defaults.withCredentials = true;
 
 const httpClient = {
-  baseURL: process.env.NEXT_PUBLIC_BASEURL,
-  basePort: process.env.NEXT_PUBLIC_BASEPORT,
+  fullApiUrl: process.env.NEXT_PUBLIC_API_URL,
   get: async (endpoint: string, headers?: AxiosRequestConfig['headers']) => {
     try {
       const response = await axios.get(
-        `${httpClient.baseURL}:${httpClient.basePort}/${endpoint}`,
+        `${httpClient.fullApiUrl}/${endpoint}`,
         { headers: headers, withCredentials: true }
       );
       return response.data;
@@ -25,7 +24,7 @@ const httpClient = {
   ) => {
     try {
       const response = await axios.post(
-        `${httpClient.baseURL}:${httpClient.basePort}/${endpoint}`,
+        `${httpClient.fullApiUrl}/${endpoint}`,
         body,
         { headers: headers, withCredentials: true }
       );

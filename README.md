@@ -14,7 +14,7 @@ Showcase Photo
 <br />
 
 ## Short Description
-A blog web application developed using React and Node, integrated with MongoDB. At present, it's designed for personal posting but plans are in place to evolve it into a community platform in the future.
+This blog web application, crafted utilizing React and Node and integrated with MongoDB, currently serves as a platform for personal posting, with aspirations to develop it into a community-oriented space in the future. While the application maintains full responsiveness, accessing it via a desktop view is recommended to experience the complete range of features.
 
 ## 🔴 Demo
 🧪 [Live Demo](nomadverse.up.railway.app/) available. Click "Live Demo" to open it.

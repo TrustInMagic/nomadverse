@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 // mui
 import Skeleton from '@mui/material/Skeleton';
@@ -5,7 +7,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 const CustomSkeleton = () => {
   const screenWidth = window.innerWidth;
-  const width = screenWidth < 720 ? screenWidth < 550 ? 0 : 150 : 300
+  const width = screenWidth < 720 ? (screenWidth < 550 ? 0 : 150) : 300;
 
   return (
     <div className='flex gap-6 items-center'>

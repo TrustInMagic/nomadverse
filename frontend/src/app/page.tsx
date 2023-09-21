@@ -7,7 +7,8 @@ import Author from '@/components/Author';
 import ChroniclePagination from '@/components/ChronicleOverview/ChroniclePagination';
 import Socials from '@/components/Socials';
 import ContentSkeleton from '@/components/ContentSkeleton';
-import PaginationSkeleton from '@/components/PaginationSkeleton';
+// mui
+import CircularProgress from '@mui/material/CircularProgress';
 // custom hooks
 import { useDataContext } from '@/providers/DataProvider';
 // -------------------------------------------------- //
@@ -33,7 +34,7 @@ export default function Home() {
         {!isLoading ? (
           <ChroniclePagination chronicles={chronicles} />
         ) : (
-          <PaginationSkeleton />
+          <CircularProgress color='secondary' className='mt-14' />
         )}
       </div>
       <div className='mt-28 flex flex-col items-center'>

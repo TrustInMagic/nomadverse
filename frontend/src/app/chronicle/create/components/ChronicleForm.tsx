@@ -117,11 +117,20 @@ const Body: React.FC<BodyProps> = ({ setStep, handleChange, body }) => (
       multiline
       rows={8}
       sx={{ width: '100%' }}
-      helperText='Add the content of your Chronicle.'
       required
       onChange={handleChange}
       value={body}
     />
+    <div className='text-xs ml-3 text-slate-600'>
+      Add the content of your Chronicle. This editor uses{' '}
+      <a
+        href='https://www.markdownguide.org/getting-started/'
+        style={{ color: '#ab47bc' }}
+      >
+        markdown
+      </a>
+      .
+    </div>
     <NavButtons setStep={setStep} />
   </div>
 );

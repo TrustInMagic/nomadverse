@@ -14,6 +14,9 @@ import { useDataContext } from '@/providers/DataProvider';
 // mui
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+// markdown
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 // types
 import { ChronicleInterface } from '../../../../types/models';
 import { CommentInterface } from '../../../../types/models';
@@ -106,7 +109,11 @@ export default function ChroniclePage({ params }: ChroniclePageProps) {
             className='mt-8 w-2/3 pb-4'
             style={{ borderBottom: 'solid 1px #d6d3d1' }}
           >
-            {specialCharDecoder(chronicle.description)}
+            <ReactMarkdown
+              // eslint-disable-next-line
+              children={specialCharDecoder(chronicle.description)}
+              remarkPlugins={[remarkGfm]}
+            />
           </div>
           <div className='flex flex-col items-center mt-8 w-2/3 '>
             {chronicle?.sub_chronicles &&

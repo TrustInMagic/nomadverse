@@ -3,6 +3,9 @@ import React from 'react';
 import CategoryTag from '@/components/CategoryTag';
 // custom hooks
 import { useAuthContext } from '@/providers/AuthProvider';
+// markdown
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 // utils
 import formatDate from '../../../../../utils/dateFormat';
 // -------------------------------------------------- //
@@ -38,7 +41,10 @@ export default function PagePreview({
         {/* eslint-disable-next-line */}
         <img src={displayImg} alt='Cover Image' className='max-w-full' />
       </div>
-      <div className='mt-6'>{body}</div>
+      <div className='mt-6'>
+        {/* eslint-disable-next-line */}
+        <ReactMarkdown children={body} remarkPlugins={[remarkGfm]} />
+      </div>
     </div>
   );
 }

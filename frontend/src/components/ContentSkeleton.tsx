@@ -6,7 +6,12 @@ import Skeleton from '@mui/material/Skeleton';
 // -------------------------------------------------- //
 
 export default function ContentSkeleton() {
-  const screenWidth = window.innerWidth;
+  const [screenWidth, setScreenWidth] = React.useState(1001);
+
+  React.useEffect(() => {
+    setScreenWidth(window.innerWidth);
+  }, []);
+
   return (
     <div className='grid grid-rows-2 grid-cols-3 gap-6 max-1000:grid-cols-2 max-1000:grid-rows-3 max-720:flex max-720:flex-col'>
       <div>

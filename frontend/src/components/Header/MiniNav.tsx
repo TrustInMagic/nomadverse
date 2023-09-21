@@ -103,18 +103,20 @@ export default function MiniNav() {
 
   return (
     <Stack direction='row' spacing={2} alignItems='center'>
-      {!expandSearch ? (
-        <div
-          className='flex items-center'
-          onClick={() => setExpandSearch(true)}
-        >
-          <SearchIcon className='cursor-pointer' />
-        </div>
-      ) : (
-        <div>
-          <CustomSearchField setExpandedSearch={setExpandSearch} />
-        </div>
-      )}
+      <div className='max-1000:hidden'>
+        {!expandSearch ? (
+          <div
+            className='flex items-center'
+            onClick={() => setExpandSearch(true)}
+          >
+            <SearchIcon className='cursor-pointer' />
+          </div>
+        ) : (
+          <div>
+            <CustomSearchField setExpandedSearch={setExpandSearch} />
+          </div>
+        )}
+      </div>
       {!user ? (
         <Button
           variant='contained'

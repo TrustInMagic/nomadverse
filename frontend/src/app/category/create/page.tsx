@@ -49,10 +49,10 @@ export default function CategoryCreate() {
   return (
     <div className='mt-24 flex flex-col gap-2 w-full items-center h-full flex-1'>
       <span className='font-bold text-xl'>Create new Category</span>
-      <span className='text-sm'>
+      <span className='text-sm text-center'>
         Create a new Category for your Chronicles.
       </span>
-      <form className='flex flex-col mt-10 gap-2'>
+      <form className='flex flex-col mt-10 gap-2 max-720:px-10'>
         <TextField
           size='small'
           variant='outlined'

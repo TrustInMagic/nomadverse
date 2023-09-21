@@ -16,8 +16,8 @@ export default function Home() {
   const { chronicles, isLoading } = useDataContext();
 
   return (
-    <div className='mt-14 p-3'>
-      <div>
+    <div className='mt-14 p-3 max-460:p-1'>
+      <div className='max-460:mt-5'>
         {!isLoading ? <Content chronicles={chronicles} /> : <ContentSkeleton />}
       </div>
       <div

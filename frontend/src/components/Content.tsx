@@ -15,7 +15,7 @@ export default function Content({ chronicles }: ContentProps) {
   const shuffledChronicles = shuffle(chronicles);
 
   return (
-    <div className='grid grid-rows-2 grid-cols-3 gap-6'>
+    <div className='grid grid-rows-2 grid-cols-3 gap-6 max-1000:grid-cols-2 max-720:flex max-720:flex-col'>
       {shuffledChronicles.slice(0, 5).map((chronicle, idx) => (
         <ChronicleCard key={chronicle.title} chronicle={chronicle} idx={idx} />
       ))}

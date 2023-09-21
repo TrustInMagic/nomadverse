@@ -16,6 +16,15 @@ const config: Config = {
       width: {
         'fit-content': 'fit-content',
       },
+      screens: {
+        'max-850': { max: '850px' },
+        'max-1000': { max: '1000px' },
+        'max-720': { max: '720px' },
+        'max-550': { max: '550px' },
+        'min-720': { min: '720px' },
+        'max-460': { max: '460px' },
+        'max-300': { max: '300px' },
+      },
     },
   },
   plugins: [],

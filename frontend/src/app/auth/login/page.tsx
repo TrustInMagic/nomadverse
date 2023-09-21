@@ -84,9 +84,9 @@ export default function Login() {
   }, [email, pwd]);
 
   return (
-    <div className='mt-24 flex flex-col items-center gap-2'>
-      <span className='font-medium'>Welcome back to Nomadverse!</span>
-      <div className='text-sm'>
+    <div className='mt-24 flex flex-col items-center gap-2 max-720:px-10'>
+      <span className='font-medium text-center'>Welcome back to Nomadverse!</span>
+      <div className='text-sm text-center'>
         By continuing, you agree to our{' '}
         <CustomLink href='' text='User Agreement' color='purple' /> and{' '}
         <CustomLink href='' text='Privacy Policy' color='purple' />.

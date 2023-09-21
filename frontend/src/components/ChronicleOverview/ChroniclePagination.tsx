@@ -27,7 +27,7 @@ export default function ChroniclePagination({
   };
 
   return (
-    <div className='flex flex-col items-center w-[900px]'>
+    <div className='flex flex-col items-center w-[900px] max-1000:w-[500px] max-720:w-[500px] max-550:w-[350px] max-300:w-[200px]'>
       <div className='flex flex-col gap-7'>
         {chronicles
           .slice(firstChronicleIdx, firstChronicleIdx + 5)
@@ -46,3 +46,4 @@ export default function ChroniclePagination({
     </div>
   );
 }
+

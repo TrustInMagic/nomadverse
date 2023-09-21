@@ -27,7 +27,11 @@ export default function ChronicleCardDetail({
         center ? 'items-center' : 'items-start'
       }`}
     >
-      <div className={`mb-2 text-xl ${center ? 'text-center' : ''} font-bold`}>
+      <div
+        className={`mb-2 text-xl ${
+          center ? 'text-center' : ''
+        } font-bold max-460:text-base`}
+      >
         {title}
       </div>
       <div className={`font-normal text-xs ${center ? 'text-center' : ''}`}>

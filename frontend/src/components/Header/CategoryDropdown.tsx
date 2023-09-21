@@ -106,10 +106,14 @@ export default function CategoryDropdown() {
   const shuffledChronicles = shuffle(chronicles);
 
   return (
-    <div>
+    <div className='max-300:hidden'>
       {(['top'] as const).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)} color='secondary'>
+          <Button
+            onClick={toggleDrawer(anchor, true)}
+            color='secondary'
+            size='small'
+          >
             {'Read ▼'}
           </Button>
           <SwipeableDrawer
@@ -120,7 +124,7 @@ export default function CategoryDropdown() {
           >
             <div className='flex items-center gap-12'>
               <div>{list(anchor)}</div>
-              <div className='flex flex-col gap-4'>
+              <div className='flex flex-col gap-4 max-460:hidden'>
                 {shuffledChronicles.slice(0, 2).map((chronicle) => (
                   <ChronicleGlimpse
                     key={chronicle.title}

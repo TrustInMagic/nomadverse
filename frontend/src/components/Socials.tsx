@@ -6,8 +6,10 @@ import Image from 'next/image';
 export default function Socials() {
   return (
     <div className='flex flex-col gap-2 items-center'>
-      <span className='text-2xl font-bold'>THE NOMADVERSE COMUNITY</span>
-      <span>Follow us on socials</span>
+      <span className='text-2xl font-bold max-460:text-lg max-300:text-sm'>
+        THE NOMADVERSE COMUNITY
+      </span>
+      <span className='max-300-text-xs'>Follow us on socials</span>
       <div className='mt-4 flex gap-6'>
         <Image
           alt='fb'

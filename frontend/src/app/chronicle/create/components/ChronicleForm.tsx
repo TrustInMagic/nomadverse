@@ -142,7 +142,7 @@ const Category: React.FC<CategoryProps> = ({
   handleChange,
 }) => (
   <div>
-    <FormControl sx={{ m: 1, minWidth: 120 }} size='small' fullWidth required>
+    <FormControl size='small' fullWidth required>
       <InputLabel id='demo-select-small-label' color='secondary'>
         Category
       </InputLabel>
@@ -232,7 +232,7 @@ export default function ChronicleForm({
   const { user } = useAuthContext();
 
   return (
-    <div className='mt-8 w-full'>
+    <div className='mt-8 w-full max-460:max-w-[350px] max-300:w-[270px]'>
       {step === 0 && (
         <Title
           setStep={setStep}

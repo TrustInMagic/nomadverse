@@ -16,19 +16,30 @@ interface ChronicleProps {
 }
 
 export default function ChronicleCard({ chronicle, idx }: ChronicleProps) {
-  const middlePosition = idx === 2;
+  const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);
+  const middlePosition = idx === 2 && screenWidth > 1000;
   const router = useRouter();
 
   const handleCardClick = () => {
     router.push(`/chronicle/${chronicle._id}`);
   };
 
+  React.useEffect(() => {
+    const widthSetter = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', widthSetter);
+
+    return () => window.removeEventListener('resize', widthSetter);
+  }, []);
+
   return (
     <div
       className={`relative cursor-pointer h-10 ${
         middlePosition ? 'row-start-1 row-end-3 col-start-2' : ''
       }`}
-      style={middlePosition ? { height: '880px' } : {}}
+      style={middlePosition ? { height: '880px' } : {height: '450px'}}
       onClick={handleCardClick}
     >
       <div className='relative'>

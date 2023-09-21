@@ -131,9 +131,7 @@ export default function Registration() {
     }
   };
 
-  const handleSubmitForm = async (
-    e: ChangeEvent<HTMLFormElement>
-  ) => {
+  const handleSubmitForm = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
@@ -163,7 +161,7 @@ export default function Registration() {
   };
 
   return (
-    <div className='mt-24 flex flex-col items-center gap-2'>
+    <div className='mt-24 flex flex-col items-center gap-2 max-720:px-10'>
       <span className='font-medium'>Welcome to Nomadverse!</span>
       <div className='text-sm text-center'>
         By continuing, you are creating a Nomadverse account and hereby agree to

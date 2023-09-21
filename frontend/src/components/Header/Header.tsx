@@ -16,7 +16,12 @@ export default function Header() {
         href='/'
         className='no-underline text-slate-900 text-2xl font-semibold tracking-widest	'
       >
-        <span style={{position: 'absolute', left: '44%'}}>Nomadverse</span>
+        <span
+          style={{ left: '44%' }}
+          className='absolute max-720:static max-460:text-xl'
+        >
+          Nomadverse
+        </span>
       </Link>
       <MiniNav />
     </div>

@@ -32,9 +32,9 @@ export default function Account() {
           be available.
         </span>
       </div>
-      <div className='flex flex-col w-2/4'>
+      <div className='flex flex-col w-2/4 max-720:w-full max-720:items-center max-460:items-baseline'>
         <span className='font-bold text-xl mb-5'>User Information</span>
-        <div className='self-baseline grid grid-cols-2 gap-8'>
+        <div className='self-baseline grid grid-cols-2 gap-8 max-720:self-center max-460:flex max-460:flex-col max-460:self-baseline max-460:mx-5'>
           <DashboardField
             field='First Name:'
             fieldValue={user.first_name}

@@ -211,13 +211,18 @@ export default function ChronicleCreate() {
 
   return (
     <div className='mt-24 flex flex-col gap-2 w-full items-center h-full flex-1'>
-      <span className='font-bold text-xl'>Welcome to the Writer Suite!</span>
-      <span className='text-sm'>
+      <span className='font-bold text-xl text-center'>
+        Welcome to the Writer Suite!
+      </span>
+      <span className='text-sm text-center mx-5'>
         Add your chronicle details in the editing panel and your changes will be
         reflected in the preview.
       </span>
-      <div className='flex-1 flex w-3/4'>
-        <div ref={leftRef} className='p-5'>
+      <div className='flex-1 flex w-3/4 max-1000:w-full max-720:flex-col max-720:items-center '>
+        <div
+          ref={leftRef}
+          className='p-5 max-460:p-0 max-300:flex max-300:flex-col max-300:items-center'
+        >
           <CustomStepper step={step} navigate={navigateToStep} />
           <ChronicleForm
             step={step}
@@ -234,10 +239,15 @@ export default function ChronicleCreate() {
             errors={errors}
           />
         </div>
-        <div ref={dividerRef} onMouseDown={onMouseDown}>
+        <div
+          ref={dividerRef}
+          onMouseDown={onMouseDown}
+          className='max-720:hidden'
+        >
           <Separator />
         </div>
-        <div ref={rightRef} className='flex-1 p-5'>
+        <div className='w-3/4 h-1 bg-slate-200 m-5 min-720:hidden'></div>
+        <div ref={rightRef} className='flex-1 p-5 max-460:p-1 max-720:px-0'>
           <PagePreview
             title={title}
             body={body}
@@ -249,3 +259,4 @@ export default function ChronicleCreate() {
     </div>
   );
 }
+

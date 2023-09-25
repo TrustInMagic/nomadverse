@@ -1,11 +1,9 @@
 import React from 'react';
 // components
 import CategoryTag from '@/components/CategoryTag';
+import CustomReactMarkdown from '@/components/CustomReactMarkdown';
 // custom hooks
 import { useAuthContext } from '@/providers/AuthProvider';
-// markdown
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 // utils
 import formatDate from '../../../../../utils/dateFormat';
 // -------------------------------------------------- //
@@ -43,7 +41,7 @@ export default function PagePreview({
       </div>
       <div className='mt-6'>
         {/* eslint-disable-next-line */}
-        <ReactMarkdown children={body} remarkPlugins={[remarkGfm]} />
+        <CustomReactMarkdown markdown={body} />
       </div>
     </div>
   );

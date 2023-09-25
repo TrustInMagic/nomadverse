@@ -4,7 +4,7 @@ const urlDecoder = (url: string) => {
 };
 
 const specialCharDecoder = (text: string) => {
-  const decoded = text.replace(/&#x27;/g, "'");
+  const decoded = text.replace(/&#x27;/g, "'").replace(/&gt;/, '>');
   return decoded;
 };
 

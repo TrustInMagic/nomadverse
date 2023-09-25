@@ -6,17 +6,15 @@ import httpClient from '@/api/http-client';
 // components
 import Header from '../components/Header';
 import CommentSection from '../components/CommentSection';
+import CustomReactMarkdown from '@/components/CustomReactMarkdown';
 // utils
-import { urlDecoder, specialCharDecoder } from '../../../../utils/decoders';
+import { urlDecoder } from '../../../../utils/decoders';
 // custom hook
 import { useAuthContext } from '@/providers/AuthProvider';
 import { useDataContext } from '@/providers/DataProvider';
 // mui
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-// markdown
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 // types
 import { ChronicleInterface } from '../../../../types/models';
 import { CommentInterface } from '../../../../types/models';
@@ -106,31 +104,35 @@ export default function ChroniclePage({ params }: ChroniclePageProps) {
             className='w-full h-[700px] mt-12 bg-cover'
           />
           <div
-            className='mt-8 w-2/3 pb-4'
+            className='mt-8 w-2/3 pb-4 max-460:w-[97%]'
             style={{ borderBottom: 'solid 1px #d6d3d1' }}
           >
-            <ReactMarkdown
-              // eslint-disable-next-line
-              children={specialCharDecoder(chronicle.description)}
-              remarkPlugins={[remarkGfm]}
-            />
+            <CustomReactMarkdown markdown={chronicle.description} />
           </div>
-          <div className='flex flex-col items-center mt-8 w-2/3 '>
+          <div className='flex flex-col items-center mt-8 w-2/3 max-460:w-[97%]'>
             {chronicle?.sub_chronicles &&
               chronicle.sub_chronicles.map((subChronicle) => {
                 const decodedImgURL = subChronicle.image_url
                   ? urlDecoder(subChronicle.image_url)
-                  : '/';
+                  : '';
 
                 return (
                   <div
                     key={subChronicle._id}
-                    className='flex flex-col items-center pb-4'
+                    className='flex flex-col items-baseline pb-4 w-full'
                     style={{ borderBottom: 'solid 1px #d6d3d1' }}
                   >
-                    {/* eslint-disable-next-line */}
-                    <img src={decodedImgURL} className='w-full mb-5' />
-                    <span>{specialCharDecoder(subChronicle.description)}</span>
+                    {decodedImgURL.length > 0 ? (
+                      // eslint-disable-next-line
+                      <img src={decodedImgURL} className='w-full mb-5' />
+                    ) : (
+                      ''
+                    )}
+                    <span className='max-460:px-2'>
+                      <CustomReactMarkdown
+                        markdown={subChronicle.description}
+                      />
+                    </span>
                   </div>
                 );
               })}
@@ -157,10 +159,19 @@ export default function ChroniclePage({ params }: ChroniclePageProps) {
                   multiline
                   rows={8}
                   sx={{ width: '100%' }}
-                  helperText='Add the content of your Subchronicle.'
                   required
                   onChange={(e) => setSubChronicleBody(e.target.value)}
                 />
+              </div>
+              <div className='text-xs ml-3 text-slate-600 -mt-2 mb-5'>
+                Add the content of your subchronicle. This editor uses{' '}
+                <a
+                  href='https://www.markdownguide.org/getting-started/'
+                  style={{ color: '#ab47bc' }}
+                >
+                  markdown
+                </a>
+                .
               </div>
               <Button
                 variant='contained'

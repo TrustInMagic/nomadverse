@@ -16,7 +16,7 @@ export default function Header({ category, title, date, author }: Header) {
   const formattedDate = formatDate(date);
 
   return (
-    <div className='flex flex-col gap-4 items-center'>
+    <div className='flex flex-col gap-4 items-center text-center'>
       <CategoryTag category={category} />
       <span className='text-4xl font-medium'>{title}</span>
       <div className='flex gap-2'>

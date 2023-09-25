@@ -5,7 +5,7 @@
 
 </div>
 
-![Screenshot from 2023-09-25 20-48-34](https://github.com/TrustInMagic/nomadverse/assets/25888605/1b0eec06-ff7a-4c22-b275-ba5433186b32)
+![Screenshot from 2023-09-25 22-28-42](https://github.com/TrustInMagic/nomadverse/assets/25888605/526e7ff5-aa5d-48cd-bed2-b06702335276)
 
 ## Short Description
 This blog web application, crafted utilizing React and Node and integrated with MongoDB, currently serves as a platform for personal posting, with aspirations to develop it into a community-oriented space in the future. While the application maintains full responsiveness, accessing it via a desktop view is recommended to experience the complete range of features.
@@ -16,9 +16,9 @@ This blog web application, crafted utilizing React and Node and integrated with 
 ## Showcase
 You can see images and a GIF of the project in user interaction below. The GIF does not show all features of the application, it only shows the most elementary user interactions. <br /> <br />
 
-![Screenshot from 2023-09-25 20-59-38](https://github.com/TrustInMagic/nomadverse/assets/25888605/9605c3c5-4b43-4d39-87d6-e9fd8583b420)
-![Screenshot from 2023-09-25 21-04-07](https://github.com/TrustInMagic/nomadverse/assets/25888605/13c89aa2-b0e5-4ece-bcb6-d3a9a5761360)
-![Screenshot from 2023-09-25 21-39-43](https://github.com/TrustInMagic/nomadverse/assets/25888605/828fac29-b1c5-4993-9f43-1c4b2866beb5)
+![Screenshot from 2023-09-25 22-31-17](https://github.com/TrustInMagic/nomadverse/assets/25888605/fc08cff8-4d20-4b9b-8bbb-b488986ffacb)
+![Screenshot from 2023-09-25 22-33-03](https://github.com/TrustInMagic/nomadverse/assets/25888605/16139a5e-6090-4504-9360-026931c824c2)
+![Screenshot from 2023-09-25 22-35-17](https://github.com/TrustInMagic/nomadverse/assets/25888605/2b122b31-7a5a-4e70-bc1a-eb5bfd5a5adb)
 
 
 ## Features

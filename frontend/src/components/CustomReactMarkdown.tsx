@@ -20,7 +20,7 @@ export default function CustomReactMarkdown({
         img({ node, ...props }) {
           return (
             // eslint-disable-next-line
-            <img {...props} style={{ maxWidth: '100%', height: 'auto' }} />
+            <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: '6px' }} />
           );
         },
         blockquote({ node, ...props }) {
@@ -34,11 +34,6 @@ export default function CustomReactMarkdown({
                 borderLeft: '5px solid gray',
               }}
             />
-          );
-        },
-        iframe({ node, ...props }) {
-          return (
-            <iframe {...props} style={{ maxWidth: '100%', height: 'auto' }} />
           );
         },
       }}

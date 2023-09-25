@@ -8,4 +8,13 @@ const specialCharDecoder = (text: string) => {
   return decoded;
 };
 
-export { urlDecoder, specialCharDecoder };
+const markdownDecoder = (text: string) => {
+  const decoded = text
+    .replace(/## /, '')
+    .replace(/&gt;/, '')
+    .replace(/< /, '')
+    .replace(/&#x27;/g, "'");
+  return decoded;
+};
+
+export { urlDecoder, specialCharDecoder, markdownDecoder };

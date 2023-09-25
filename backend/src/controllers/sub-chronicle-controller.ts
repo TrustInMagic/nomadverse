@@ -7,8 +7,6 @@ import { body, validationResult } from 'express-validator';
 // -------------------------------------------------- //
 
 export const sub_chronicle_create = [
-  body('image_url', 'Image URL must be specified.').trim().escape(),
-
   body('description', 'Description must be specified')
     .trim()
     .isLength({ min: 10 })

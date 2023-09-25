@@ -8,7 +8,7 @@ interface SubChronicleInterfaceExtended
     Document {}
 
 const subChronicleSchema = new Schema({
-  image_url: { type: String, required: true },
+  image_url: { type: String },
   chronicle: { type: Schema.Types.ObjectId, ref: 'Chronicle' },
   description: { type: String, minLength: 10, required: true },
 });

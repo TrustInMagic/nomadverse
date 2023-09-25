@@ -1,6 +1,6 @@
 import React from 'react';
 // utils
-import { urlDecoder } from '../../../utils/decoders';
+import { urlDecoder, markdownDecoder } from '../../../utils/decoders';
 // components
 import CategoryTag from '../CategoryTag';
 import ChronicleCardDetail from '../ChronicleCard/ChronicleCardDetail';
@@ -33,11 +33,14 @@ export default function ChronicleOverview({
   }, []);
 
   return (
-    <div className='flex gap-6 cursor-pointer max-300:gap-2' onClick={handleClick}>
+    <div
+      className='flex gap-6 cursor-pointer max-300:gap-2'
+      onClick={handleClick}
+    >
       <div>
         {/* eslint-disable-next-line */}
         <img
-          className='h-[250px] w-[400px] max-720:max-w-[350px] max-720:h-auto max-550:max-w-[250px] max-460:max-w-[200px] max-300:max-w-[160px]'
+          className='h-[250px] w-[400px] max-720:max-w-[350px] max-720:h-auto max-550:max-w-[250px] max-460:max-w-[200px] max-300:max-w-[160px] rounded-md'
           src={urlDecoder(chronicle.image_url)}
           alt='Chronicle'
         />
@@ -47,7 +50,9 @@ export default function ChronicleOverview({
           <CategoryTag category={chronicle.category} />
         </div>
         <ChronicleCardDetail
-          description={screenWidth > 720 ? chronicle.description : ''}
+          description={
+            screenWidth > 720 ? markdownDecoder(chronicle.description) : ''
+          }
           title={chronicle.title}
           visibleLetters={screenWidth > 1000 ? 35 : 15}
           center={false}

@@ -101,7 +101,7 @@ export default function ChroniclePage({ params }: ChroniclePageProps) {
               backgroundImage: `url(${decodedImgURL})`,
               backgroundPosition: 'center center',
             }}
-            className='w-full h-[700px] mt-12 bg-cover'
+            className='w-full h-[700px] mt-12 bg-cover rounded-md'
           />
           <div
             className='mt-8 w-2/3 pb-4 max-460:w-[97%]'
@@ -119,12 +119,15 @@ export default function ChroniclePage({ params }: ChroniclePageProps) {
                 return (
                   <div
                     key={subChronicle._id}
-                    className='flex flex-col items-baseline pb-4 w-full'
+                    className='flex flex-col items-baseline pb-4 w-full rounded-md'
                     style={{ borderBottom: 'solid 1px #d6d3d1' }}
                   >
                     {decodedImgURL.length > 0 ? (
                       // eslint-disable-next-line
-                      <img src={decodedImgURL} className='w-full mb-5' />
+                      <img
+                        src={decodedImgURL}
+                        className='w-full mb-5 rounded-md'
+                      />
                     ) : (
                       ''
                     )}

@@ -199,7 +199,7 @@ export default function CommentSection({
   }, []);
 
   return (
-    <div className='mt-20 flex flex-col w-2/3'>
+    <div className='mt-20 flex flex-col w-2/3 max-460:w-[97%]'>
       <a
         className='font-bold text-xl self-center mb-6 no-underline text-inherit'
         href='#comments'

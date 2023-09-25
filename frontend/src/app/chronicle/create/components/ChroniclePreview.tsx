@@ -37,7 +37,11 @@ export default function PagePreview({
       </div>
       <div className='mt-4 '>
         {/* eslint-disable-next-line */}
-        <img src={displayImg} alt='Cover Image' className='max-w-full' />
+        <img
+          src={displayImg}
+          alt='Cover Image'
+          className='max-w-full rounded-md'
+        />
       </div>
       <div className='mt-6'>
         {/* eslint-disable-next-line */}

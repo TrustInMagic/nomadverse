@@ -5,7 +5,7 @@ import ChronicleCardDetail from './ChronicleCardDetail';
 // next
 import { useRouter } from 'next/navigation';
 // utils
-import { urlDecoder } from '../../../utils/decoders';
+import { urlDecoder, markdownDecoder } from '../../../utils/decoders';
 //types
 import { ChronicleInterface } from '../../../types/models';
 // -------------------------------------------------- //
@@ -45,7 +45,7 @@ export default function ChronicleCard({ chronicle, idx }: ChronicleProps) {
       <div className='relative'>
         {/* eslint-disable-next-line */}
         <img
-          className='w-full h-80 object-cover'
+          className='w-full h-80 object-cover rounded-md'
           alt='Chronicle Image'
           src={urlDecoder(chronicle.image_url)}
           style={middlePosition ? { height: '650px' } : {}}
@@ -54,7 +54,7 @@ export default function ChronicleCard({ chronicle, idx }: ChronicleProps) {
       </div>
       <ChronicleCardDetail
         title={chronicle.title}
-        description={chronicle.description}
+        description={markdownDecoder(chronicle.description)}
       />
     </div>
   );

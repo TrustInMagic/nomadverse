@@ -38,6 +38,7 @@ export default function ChronicleGlimpse({
           alt='Chronicle Glimpse'
           height='100px'
           width='150px'
+          className='rounded-md'
         />
         <div className='flex flex-col gap-2'>
           <span className='italic'>

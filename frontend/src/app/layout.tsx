@@ -32,7 +32,7 @@ export default function RootLayout({
       <body className={`${inter.className} flex flex-col items-center grow`}>
         <AuthProvider>
           <DataProvider>
-            <div className='max-w-screen-2xl w-full mb-32 flex-1 flex flex-col'>
+            <div className='max-w-screen-xl w-full mb-32 flex-1 flex flex-col'>
               <Header />
               {children}
             </div>

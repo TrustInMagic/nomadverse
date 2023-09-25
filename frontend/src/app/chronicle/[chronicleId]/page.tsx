@@ -189,7 +189,7 @@ export default function ChroniclePage({ params }: ChroniclePageProps) {
             <Button
               variant='outlined'
               color='secondary'
-              className='mt-10'
+              style={{marginTop: '40px'}}
               onClick={handleBuildSubChronicle}
             >
               {showForm ? 'Close form' : 'Build Subchronicle'}

@@ -32,4 +32,5 @@ const config: Config = {
     preflight: false,
   },
 };
+
 export default config;

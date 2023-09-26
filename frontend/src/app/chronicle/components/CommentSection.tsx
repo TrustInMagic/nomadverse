@@ -7,6 +7,7 @@ import ReplyIcon from '@mui/icons-material/Reply';
 import CommentInput from './CommentInput';
 // utils
 import formatDate from '../../../../utils/dateFormat';
+import { specialCharDecoder } from '../../../../utils/decoders';
 // custom hooks
 import { useAuthContext } from '@/providers/AuthProvider';
 // http
@@ -115,7 +116,7 @@ function Comment({ comment, user, fetchData, chronicleId }: CommentProps) {
         className='text-sm pb-3'
         style={{ borderBottom: 'solid 1px #d6d3d1' }}
       >
-        <div>{comment.content}</div>
+        <div>{specialCharDecoder(comment.content)}</div>
         <div className='flex gap-5 mt-3'>
           <div className='flex gap-1'>
             {comment.likes.length > 0 ? (

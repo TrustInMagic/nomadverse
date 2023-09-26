@@ -5,13 +5,7 @@
 
 </div>
 
-********************************************
-Showcase Photo
-********************************************
-<p align="center">
-  App Showcase  
-</p>
-<br />
+![Screenshot from 2023-09-25 22-28-42](https://github.com/TrustInMagic/nomadverse/assets/25888605/526e7ff5-aa5d-48cd-bed2-b06702335276)
 
 ## Short Description
 This blog web application, crafted utilizing React and Node and integrated with MongoDB, currently serves as a platform for personal posting, with aspirations to develop it into a community-oriented space in the future. While the application maintains full responsiveness, accessing it via a desktop view is recommended to experience the complete range of features.
@@ -22,9 +16,10 @@ This blog web application, crafted utilizing React and Node and integrated with 
 ## Showcase
 You can see images and a GIF of the project in user interaction below. The GIF does not show all features of the application, it only shows the most elementary user interactions. <br /> <br />
 
-********************************************
-Showcase Galery
-********************************************
+![Screenshot from 2023-09-25 22-31-17](https://github.com/TrustInMagic/nomadverse/assets/25888605/fc08cff8-4d20-4b9b-8bbb-b488986ffacb)
+![Screenshot from 2023-09-25 22-33-03](https://github.com/TrustInMagic/nomadverse/assets/25888605/16139a5e-6090-4504-9360-026931c824c2)
+![Screenshot from 2023-09-25 22-35-17](https://github.com/TrustInMagic/nomadverse/assets/25888605/2b122b31-7a5a-4e70-bc1a-eb5bfd5a5adb)
+
 
 ## Features
 - Secure login and registration with encrypted password storage in the database.

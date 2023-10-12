@@ -21,6 +21,10 @@ You can see images and a GIF of the project in user interaction below. The GIF d
 ![Screenshot from 2023-09-25 22-35-17](https://github.com/TrustInMagic/nomadverse/assets/25888605/2b122b31-7a5a-4e70-bc1a-eb5bfd5a5adb)
 ![Screenshot](https://i.imgur.com/eLQxCTr.png)
 
+
+https://github.com/TrustInMagic/nomadverse/assets/25888605/e069aff7-0382-47c5-8a23-c9ec1872f68c
+
+
 ## Features
 - Secure login and registration with encrypted password storage in the database.
 - User Profile area for modifying account preferences (currently in development).
